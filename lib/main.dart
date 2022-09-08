@@ -1,90 +1,87 @@
 import 'package:flutter/material.dart';
 
-void main() => runApp(const MyApp());
+void main() => runApp(const MyHome());
 
-class MyApp extends StatelessWidget {
-  const MyApp({Key? key}) : super(key: key);
+class MyHome extends StatelessWidget {
+  final appTitle = 'Example Form';
 
-  static const String _title = 'Flutter Code Sample';
-
+  const MyHome({Key? key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(
-      title: _title,
-      home: MyStatefulWidget(),
+    return MaterialApp(
+      title: appTitle,
+      initialRoute: '/',
+      routes: 
+     {
+  //      '/homepage': (context) => Homepage(),
+      },
+      home: MyApp(title: appTitle),
     );
   }
 }
 
-class MyStatefulWidget extends StatefulWidget {
-  const MyStatefulWidget({Key? key}) : super(key: key);
-  @override
-  State<MyStatefulWidget> createState() => _MyStatefulWidgetState();
-}
-
-class _MyStatefulWidgetState extends State<MyStatefulWidget> {
-  int _selectedIndex = 0;
-  static const TextStyle optionStyle =
-      TextStyle(fontSize: 30, fontWeight: FontWeight.bold);
-  static const List<Widget> _widgetOptions = <Widget>[
-    Text(
-      'Index 0: Home',
-      style: optionStyle,
-    ),
-    Text(
-      'Index 1: Business',
-      style: optionStyle,
-    ),
-    Text(
-      'Index 2: School',
-      style: optionStyle,
-    ),
-  Text(
-      'Index 3: ก Center',
-      style: optionStyle,
-    ),
-    ];
-
-  void _onItemTapped(int index) {
-    setState(() {
-      _selectedIndex = index;
-    });
-  }
-
+class MyApp extends StatelessWidget {
+  final String title;
+  const MyApp({Key? key, required this.title}) : super(key: key);
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('BottomNavigationBar Sample'),
+        title: const Text('Flutter Demo'),
       ),
       body: Center(
-        child: _widgetOptions.elementAt(_selectedIndex),
-      ),
-      bottomNavigationBar: BottomNavigationBar(
-        type: BottomNavigationBarType.shifting,
-        items: const <BottomNavigationBarItem>[
-          BottomNavigationBarItem(
-            icon: Icon(Icons.home),
-            label: 'Home',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.business),
-            label: 'Business',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.school),
-            label: 'School',
-          ),
-        BottomNavigationBarItem(
-            icon: Icon(Icons.gamepad),
-            label: 'Game',
-          )
-          ],
-        currentIndex: _selectedIndex,
-        selectedItemColor: Colors.teal[800],
-        unselectedItemColor: Colors.teal[200],
-        onTap: _onItemTapped,
-      ),
+          child: ListView(children: const <Widget>[
+        MyRadio(),
+      ])),
     );
   }
 }
+
+class MyRadio extends StatefulWidget {
+  const MyRadio({Key? key}) : super(key: key);
+
+  @override
+  _MyRadioState createState() => _MyRadioState();
+}
+
+class _MyRadioState extends State<MyRadio> {
+  dynamic route;
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      child: Column(
+          mainAxisSize: MainAxisSize.min,
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: <Widget>[
+            Row(children: [
+              Radio(
+                value: 1,
+                groupValue: route,
+                onChanged: (value) {
+                  setState(() {
+                    route = value;
+                  });
+                },
+              ),
+              const Text('Round Trip'),
+              Radio(
+                value: 0,
+                groupValue: route,
+                onChanged: (value) {
+                  // _handleTapboxChanged(value);
+                  setState(() {
+                    route = value;
+                  });
+                },
+              ),
+              const Text('One way'),
+            ]),
+            Row(children: [
+              Text('$route'),
+            ]),
+          ]),
+    );
+  }
+}
+
