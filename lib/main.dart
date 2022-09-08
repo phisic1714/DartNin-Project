@@ -11,9 +11,8 @@ class MyHome extends StatelessWidget {
     return MaterialApp(
       title: appTitle,
       initialRoute: '/',
-      routes: 
-     {
-  //      '/homepage': (context) => Homepage(),
+      routes: {
+        //      '/homepage': (context) => Homepage(),
       },
       home: MyApp(title: appTitle),
     );
@@ -54,6 +53,11 @@ class _MyRadioState extends State<MyRadio> {
           mainAxisSize: MainAxisSize.min,
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
+            TextFormField(
+              initialValue: 'Mr.A',
+              decoration: const InputDecoration(
+                  prefixIcon: Icon(Icons.person), border: OutlineInputBorder()),
+            ),
             Row(children: [
               Radio(
                 value: 1,
@@ -84,4 +88,3 @@ class _MyRadioState extends State<MyRadio> {
     );
   }
 }
-
