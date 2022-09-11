@@ -10,11 +10,6 @@ class MyHome extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: appTitle,
-      initialRoute: '/',
-      routes: {
-        //      '/homepage': (context) => Homepage(),
-      },
       home: MyApp(title: appTitle),
     );
   }
@@ -35,37 +30,38 @@ class MyApp extends StatelessWidget {
             padding: EdgeInsets.zero,
             children: <Widget>[
               DrawerHeader(
-                child: Text('Drawer Header'),
-                decoration: BoxDecoration(color: Colors.blue),
+                child: Text(
+                  'Drawer Header',
+                  style: TextStyle(color: Colors.yellow),
+                ),
+                decoration: BoxDecoration(color: Colors.purple),
               ),
               ListTile(
                 title: Text('Item 1'),
                 onTap: () {
-                  Navigator.push(
-                      context,
+
+                  Navigator.of(context).push(
                       MaterialPageRoute(
-                        builder: (context) => const MyRadio(),
-                      ));
+                        builder: (context) => MyRadio()
+                      )); 
                 },
               ),
               ListTile(
                 title: Text('Item 2'),
                 onTap: () {
-                  Navigator.push(
-                      context,
+
+                  Navigator.of(context).push(
                       MaterialPageRoute(
-                        builder: (context) => const secondItem(),
-                      ));
+                        builder: (context) => secondItem()
+                      ));                  
+
                 },
               )
             ],
           ),
         ),
       ),
-      body: Center(
-          child: ListView(children: const <Widget>[
-        MyRadio(),
-      ])),
+      body: Center(child: ListView(children: const <Widget>[secondItem()])),
     );
   }
 }
