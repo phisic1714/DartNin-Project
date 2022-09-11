@@ -35,7 +35,7 @@ class _MyRadioState extends State<MyRadio> {
   dynamic provice = '';
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
+    return Scaffold(resizeToAvoidBottomInset: false,
         appBar: AppBar(
           title: const Text('Flutter Demo'),
         ),
@@ -70,7 +70,7 @@ class _MyRadioState extends State<MyRadio> {
             ),
           ),
         ),
-        body: Column(children: <Widget>[
+        body: SingleChildScrollView(child:(Column(children: <Widget>[
           checkbox(),
           checkbox_value(),
           buildSelectField(),
@@ -83,7 +83,7 @@ class _MyRadioState extends State<MyRadio> {
                   child: Text('Choose avatar'),
                 )
               : Image.file(_avatar!)
-        ]));
+        ]))));
   }
 
   onChooseImage() async {
