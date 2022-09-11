@@ -1,5 +1,9 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'dart:io';
+import 'package:datetime_picker_formfield/datetime_picker_formfield.dart';
+import 'package:intl/intl.dart';
+import 'package:image_picker/image_picker.dart';
 
 void main() => runApp(const MyHome());
 
@@ -10,58 +14,7 @@ class MyHome extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      home: MyApp(title: appTitle),
-    );
-  }
-}
-
-class MyApp extends StatelessWidget {
-  final String title;
-  const MyApp({Key? key, required this.title}) : super(key: key);
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: const Text('Flutter Demo'),
-      ),
-      drawer: Drawer(
-        child: Drawer(
-          child: ListView(
-            padding: EdgeInsets.zero,
-            children: <Widget>[
-              DrawerHeader(
-                child: Text(
-                  'Drawer Header',
-                  style: TextStyle(color: Colors.yellow),
-                ),
-                decoration: BoxDecoration(color: Colors.purple),
-              ),
-              ListTile(
-                title: Text('Item 1'),
-                onTap: () {
-
-                  Navigator.of(context).push(
-                      MaterialPageRoute(
-                        builder: (context) => MyRadio()
-                      )); 
-                },
-              ),
-              ListTile(
-                title: Text('Item 2'),
-                onTap: () {
-
-                  Navigator.of(context).push(
-                      MaterialPageRoute(
-                        builder: (context) => secondItem()
-                      ));                  
-
-                },
-              )
-            ],
-          ),
-        ),
-      ),
-      body: Center(child: ListView(children: const <Widget>[secondItem()])),
+      home: MyRadio(),
     );
   }
 }
@@ -70,22 +23,95 @@ class MyRadio extends StatefulWidget {
   const MyRadio({Key? key}) : super(key: key);
 
   @override
-  _MyRadioState createState() => _MyRadioState();
+  State<MyRadio> createState() => _MyRadioState();
 }
 
 class _MyRadioState extends State<MyRadio> {
+  @override
+  File? _avatar;
   bool checkboxValueA = true;
   bool checkboxValueB = true;
   List<String> provices = ['', 'BKK', 'Pathumthani', 'Outbound'];
   dynamic provice = '';
   @override
   Widget build(BuildContext context) {
-    return Container(
-        child: Column(children: <Widget>[
-      checkbox(),
-      checkbox_value(),
-      buildSelectField()
-    ]));
+    return Scaffold(
+        appBar: AppBar(
+          title: const Text('Flutter Demo'),
+        ),
+        drawer: Drawer(
+          child: Drawer(
+            child: ListView(
+              padding: EdgeInsets.zero,
+              children: <Widget>[
+                UserAccountsDrawerHeader(
+                  accountName: Text('พีรพัฒน์ สาริมาน'),
+                  accountEmail: Text('phisic1714@gmail.com'),
+                  currentAccountPicture: CircleAvatar(
+                    child: FlutterLogo(size: 42.0),
+                    backgroundColor: Colors.lightGreen,
+                  ),
+                ),
+                ListTile(
+                  title: Text('Checkbox'),
+                  onTap: () {
+                    Navigator.push(context,
+                        MaterialPageRoute(builder: (context) => MyRadio()));
+                  },
+                ),
+                ListTile(
+                  title: Text('Radio Button'),
+                  onTap: () {
+                    Navigator.push(context,
+                        MaterialPageRoute(builder: (context) => Mycheckbox()));
+                  },
+                )
+              ],
+            ),
+          ),
+        ),
+        body: Column(children: <Widget>[
+          checkbox(),
+          checkbox_value(),
+          buildSelectField(),
+          buildDateField(),
+          _avatar == null
+              ? ElevatedButton(
+                  onPressed: () {
+                    onChooseImage();
+                  },
+                  child: Text('Choose avatar'),
+                )
+              : Image.file(_avatar!)
+        ]));
+  }
+
+  onChooseImage() async {
+    final picker = ImagePicker();
+    final pickedFile = await picker.pickImage(source: ImageSource.camera);
+
+    setState(() {
+      if (pickedFile != null) {
+        _avatar = File(pickedFile.path);
+      } else {
+        print('No image selected.');
+      }
+    });
+  }
+
+  DateTimeField buildDateField() {
+    final _format = DateFormat('dd/MM/yyyy');
+    return DateTimeField(
+      decoration: InputDecoration(labelText: 'Birth Date'),
+      format: _format,
+      onShowPicker: (context, currentValue) {
+        return showDatePicker(
+            context: context,
+            firstDate: DateTime(1900),
+            initialDate: currentValue ?? DateTime.now(),
+            lastDate: DateTime(2100));
+      },
+    );
   }
 
   Row checkbox_value() {
@@ -143,50 +169,88 @@ class _MyRadioState extends State<MyRadio> {
   }
 }
 
-class secondItem extends StatefulWidget {
-  const secondItem({Key? key}) : super(key: key);
+class Mycheckbox extends StatefulWidget {
+  const Mycheckbox({Key? key}) : super(key: key);
 
   @override
-  State<secondItem> createState() => _secondItemState();
+  State<Mycheckbox> createState() => _MycheckboxState();
 }
 
-class _secondItemState extends State<secondItem> {
+class _MycheckboxState extends State<Mycheckbox> {
   dynamic route;
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      child: Column(
-          mainAxisSize: MainAxisSize.min,
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            Row(children: [
-              Radio(
-                value: 1,
-                groupValue: route,
-                onChanged: (value) {
-                  setState(() {
-                    route = value;
-                  });
+    return Scaffold(
+      appBar: AppBar(
+        title: const Text('Flutter Demo'),
+      ),
+      drawer: Drawer(
+        child: Drawer(
+          child: ListView(
+            padding: EdgeInsets.zero,
+            children: <Widget>[
+              UserAccountsDrawerHeader(
+                accountName: Text('พีรพัฒน์ สาริมาน'),
+                accountEmail: Text('phisic1714@gmail.com'),
+                currentAccountPicture: CircleAvatar(
+                  child: FlutterLogo(size: 42.0),
+                  backgroundColor: Colors.lightGreen,
+                ),
+              ),
+              ListTile(
+                title: Text('Checkbox'),
+                onTap: () {
+                  Navigator.push(context,
+                      MaterialPageRoute(builder: (context) => MyRadio()));
                 },
               ),
-              const Text('Round Trip'),
-              Radio(
-                value: 0,
-                groupValue: route,
-                onChanged: (value) {
-                  // _handleTapboxChanged(value);
-                  setState(() {
-                    route = value;
-                  });
+              ListTile(
+                title: Text('Radio Button'),
+                onTap: () {
+                  Navigator.push(context,
+                      MaterialPageRoute(builder: (context) => Mycheckbox()));
                 },
-              ),
-              const Text('One way'),
-            ]),
-            Row(children: [
-              Text('$route'),
-            ]),
-          ]),
+              )
+            ],
+          ),
+        ),
+      ),
+      body: radio(),
     );
+  }
+
+  Column radio() {
+    return Column(
+        mainAxisSize: MainAxisSize.min,
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: <Widget>[
+          Row(children: [
+            Radio(
+              value: 1,
+              groupValue: route,
+              onChanged: (value) {
+                setState(() {
+                  route = value;
+                });
+              },
+            ),
+            const Text('Round Trip'),
+            Radio(
+              value: 0,
+              groupValue: route,
+              onChanged: (value) {
+                // _handleTapboxChanged(value);
+                setState(() {
+                  route = value;
+                });
+              },
+            ),
+            const Text('One way'),
+          ]),
+          Row(children: [
+            Text('$route'),
+          ]),
+        ]);
   }
 }
