@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_application_32/login.dart';
+import 'package:flutter_application_3/homepage.dart';
+import 'package:flutter_application_3/login.dart';
+import 'package:flutter_application_3/register.dart';
 import 'package:firebase_core/firebase_core.dart';
 
 void main() async {
@@ -26,7 +28,8 @@ class MyApp extends StatelessWidget {
       initialRoute: '/',
       routes: {
         '/': (context) => LoginPage(),
-        // '/register': (context) => RegisterPage(),
+         '/register': (context) => RegisterPage(),
+         '/homepage':(context) => Homepage()
       },
     );
   }
