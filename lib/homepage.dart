@@ -27,8 +27,13 @@ class _HomepageState extends State<Homepage> {
         ),
         body: Center(
             child:
-                Column(mainAxisSize: MainAxisSize.min, children: const <Widget>[
+                Column(mainAxisSize: MainAxisSize.min, children:  <Widget>[
           Text("Hello", style: TextStyle(fontSize: 26)),
+          ElevatedButton(
+              onPressed: () {
+                Navigator.pushNamed(context, '/addbook');
+              },
+              child: Text("Addbook"))
         ])));
   }
 }

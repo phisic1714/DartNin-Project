@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_application_3/homepage.dart';
 import 'package:flutter_application_3/login.dart';
 import 'package:flutter_application_3/register.dart';
+import 'package:flutter_application_3/addbook.dart';
 import 'package:firebase_core/firebase_core.dart';
 
 void main() async {
@@ -29,7 +30,8 @@ class MyApp extends StatelessWidget {
       routes: {
         '/': (context) => LoginPage(),
          '/register': (context) => RegisterPage(),
-         '/homepage':(context) => Homepage()
+         '/homepage':(context) => Homepage(),
+         '/addbook':(context) => AddBookPage()
       },
     );
   }
