@@ -13,6 +13,7 @@ class _AddBookPageState extends State<AddBookPage> {
   final _title = TextEditingController();
   final _detail = TextEditingController();
   final _price = TextEditingController();
+  final _author = TextEditingController();
   final store = FirebaseFirestore.instance;
 
   @override
@@ -26,6 +27,7 @@ class _AddBookPageState extends State<AddBookPage> {
         child: ListView(
           children: <Widget>[
             buildTitleField(),
+            buildAuthorField(),
             buildDetailField(),
             buildPriceField(),
             buildSaveButton()
@@ -43,6 +45,7 @@ class _AddBookPageState extends State<AddBookPage> {
             print('save button press');
             Map<String, dynamic> data = {
               'title': _title.text,
+              'author': _author.text,
               'detail': _detail.text,
               'price': double.parse(_price.text)
             };
@@ -77,6 +80,16 @@ class _AddBookPageState extends State<AddBookPage> {
         icon: Icon(Icons.book),
       ),
       validator: (value) => value!.isEmpty ? 'Please fill in title' : null,
+    );
+  }
+  TextFormField buildAuthorField() {
+    return TextFormField(
+      controller:  _author,
+      decoration: const InputDecoration(
+        labelText: 'author',
+        icon: Icon(Icons.person),
+      ),
+      validator: (value) => value!.isEmpty ? 'Please fill in author' : null,
     );
   }
 

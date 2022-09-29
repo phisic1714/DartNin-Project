@@ -36,7 +36,7 @@ class _BookDetailState extends State<BookDetail> {
       itemCount: data.docs.length,
       itemBuilder: (BuildContext context, int index) {
         var model = data.docs.elementAt(index);
-        String a = model['detail'] + '  ' + model['price'].toString();
+        String a = model['detail'] + '  ' + model['author'] + '  ' + model['price'].toString() ;
         return ListTile(
           title: Text(model['title']),
           //    subtitle: Text(model['detail'] + Text("${model['price']}")),
@@ -45,8 +45,8 @@ class _BookDetailState extends State<BookDetail> {
               child: const Text('Delete'),
               onPressed: () {
                 print(model.id);
-        //deleteValue(model.id);
-                //Navigator.pop(context);
+        deleteValue(model.id);
+                Navigator.pop(context);
               }),
         );
       },

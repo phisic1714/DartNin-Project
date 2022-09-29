@@ -4,7 +4,6 @@ import 'package:flutter_application_3/login.dart';
 import 'package:flutter_application_3/register.dart';
 import 'package:flutter_application_3/addbook.dart';
 import 'package:flutter_application_3/book.dart';
-import 'package:flutter_application_3/showdetail.dart';
 import 'package:firebase_core/firebase_core.dart';
 
 void main() async {
@@ -14,7 +13,7 @@ void main() async {
 }
 
 class MyApp extends StatelessWidget {
-  const MyApp({Key? key}) : super(key: key);
+  const MyApp({Key? key, required String title}) : super(key: key);
 
   // This widget is the root of your application.
   @override
@@ -63,7 +62,6 @@ MaterialApp buildMaterialApp() {
     routes: {
       '/': (context) => BookPage(),
       '/addbook': (context) => AddBookPage(),
-      '/showdetail': (context) => BookDetail('')
     },
   );
 }
