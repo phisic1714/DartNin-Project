@@ -42,7 +42,7 @@ class _BookDetailState extends State<BookDetail> {
           //    subtitle: Text(model['detail'] + Text("${model['price']}")),
           subtitle: Text(a),
           trailing: ElevatedButton(
-              child: const Text('Del'),
+              child: const Text('Delete'),
               onPressed: () {
                 print(model.id);
         deleteValue(model.id);
