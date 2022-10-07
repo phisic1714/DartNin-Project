@@ -10,6 +10,33 @@ class home extends StatelessWidget {
         title: Text('HOME'),
       ),
       backgroundColor: Colors.white,
+      drawer: Drawer(
+        child: ListView(
+          padding: EdgeInsets.zero,
+          children: <Widget>[
+            Image.network(
+                'https://www.macthai.com/wp-content/uploads/2015/05/nintendo-characters-800x345.jpg'),
+            ListTile(
+              title: Text('หน้าแรก'),
+              onTap: () {
+                Navigator.pushNamed(context, '/');
+              },
+            ),
+            ListTile(
+              title: Text('โปรไฟล์'),
+              onTap: () {},
+            ),
+            ListTile(
+              title: Text('ตั้งค่า'),
+              onTap: () {},
+            ),
+            ListTile(
+              title: Text('ออกจากระบบ'),
+              onTap: () {},
+            ),
+          ],
+        ),
+      ),
       body: Container(
         child: Row(
           mainAxisAlignment: MainAxisAlignment.center,
