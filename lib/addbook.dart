@@ -37,7 +37,7 @@ class _AddBookPageState extends State<AddBookPage> {
     );
   }
 
-  ElevatedButton buildSaveButton() {
+   ElevatedButton buildSaveButton() {
     return ElevatedButton(
         child: const Text('Save'),
         onPressed: () async {
@@ -55,14 +55,14 @@ class _AddBookPageState extends State<AddBookPage> {
               print('save id = ${ref.id}');
               Navigator.pop(context);
             } catch (e) {
-              Scaffold.of(_form.currentContext!).showSnackBar(
+              ScaffoldMessenger.of(_form.currentContext!).showSnackBar(
                 SnackBar(
                   content: Text('Error $e'),
                 ),
               );
             }
           } else {
-            Scaffold.of(_form.currentContext!).showSnackBar(
+            ScaffoldMessenger.of(_form.currentContext!).showSnackBar(
               const SnackBar(
                 content: Text('Please validate value'),
               ),

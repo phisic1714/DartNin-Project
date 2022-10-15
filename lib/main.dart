@@ -1,9 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_application_3/homepage.dart';
-import 'package:flutter_application_3/login.dart';
-import 'package:flutter_application_3/register.dart';
-import 'package:flutter_application_3/addbook.dart';
-import 'package:flutter_application_3/book.dart';
+import 'package:flutter_application_3/home.dart';
 import 'package:firebase_core/firebase_core.dart';
 
 void main() async {
@@ -29,11 +25,8 @@ class MyApp extends StatelessWidget {
       ),
       initialRoute: '/',
       routes: {
-        '/': (context) => LoginPage(),
-         '/register': (context) => RegisterPage(),
-         '/homepage':(context) => Homepage(),
-         '/addbook':(context) => AddBookPage(),
-         '/book':(context) => BookPage()
+         '/': (context) => home(),
+      
       },
     );
   }
@@ -53,15 +46,14 @@ class MyApp2 extends StatelessWidget {
 }
 
 MaterialApp buildMaterialApp() {
-  return MaterialApp(
+  return  MaterialApp(
     title: 'FireStore Demo',
     theme: ThemeData(
       primarySwatch: Colors.amber,
     ),
     initialRoute: '/',
     routes: {
-      '/': (context) => BookPage(),
-      '/addbook': (context) => AddBookPage(),
+      '/': (context) => home(),
     },
   );
 }

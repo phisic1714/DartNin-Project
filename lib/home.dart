@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
-
+import 'package:flutter_application_3/GameCollection/gbcMenu.dart';
+import 'package:flutter_application_3/GameCollection/nesMenu.dart';
+import 'package:flutter_application_3/GameCollection/snesMenu.dart';
+import 'package:flutter_application_3/GameCollection/runGame.dart';
 class home extends StatelessWidget {
   const home({Key? key}) : super(key: key);
 
@@ -9,6 +12,7 @@ class home extends StatelessWidget {
       appBar: AppBar(
         title: Text('HOME'),
       ),
+      
       backgroundColor: Colors.white,
       body: Container(
         child: Row(
@@ -26,7 +30,10 @@ class home extends StatelessWidget {
                 ElevatedButton(
                   child: Text('SNES'),
                   onPressed: () {
-                    Navigator.pushNamed(context, '/menu');
+                    Navigator.push(context,
+            MaterialPageRoute(
+              builder: (context) => const runGame(),
+            ),);
                   },
                 ),
                 Image(
@@ -38,7 +45,7 @@ class home extends StatelessWidget {
                 ElevatedButton(
                   child: Text('GBC'),
                   onPressed: () {
-                    Navigator.pushNamed(context, '/menu2');
+                    Navigator.pushNamed(context, '/Gbc');
                   },
                 ),
                 Image(
@@ -50,7 +57,7 @@ class home extends StatelessWidget {
                 ElevatedButton(
                   child: Text('NES'),
                   onPressed: () {
-                    Navigator.pushNamed(context, '/menu3');
+                    Navigator.pushNamed(context, '/Nes');
                   },
                 ),
               ],
