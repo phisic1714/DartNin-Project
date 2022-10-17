@@ -25,7 +25,14 @@ class _runGameState extends State<runGame> {
             ),
               child: WebView(
                 zoomEnabled: false,
-                initialUrl: "http://vizzed.net/emulatorjs/index.php?gameID=1324&gameName=Metal%20Gear%20Solid&system=gbc&gameurl=http%3A%2F%2Fwww.vizzed.net%2Fgbc%2Ffiles%2FMetal_Gear_Solid.zip&resolution=Low",
+                initialUrl: Uri.dataFromString('<iframe src="http://vizzed.net/emulatorjs/index.php?gameID=1324&gameName=Metal%20Gear%20Solid&system=gbc&gameurl=http%3A%2F%2Fwww.vizzed.net%2Fgbc%2Ffiles%2FMetal_Gear_Solid.zip&resolution=Low" 
+                width=100% 
+                height=100% 
+                frameborder="no" 
+                allowfullscreen="true" 
+                webkitallowfullscreen="true" 
+                mozallowfullscreen="true" 
+                scrolling="no"></iframe>', mimeType: 'text/html').toString(),
                 javascriptMode: JavascriptMode.unrestricted,
               ),
             ),
