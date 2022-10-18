@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_application_3/GameCollection/gbcMenu.dart';
 import 'package:flutter_application_3/GameCollection/nesMenu.dart';
 import 'package:flutter_application_3/GameCollection/snesMenu.dart';
-import 'package:flutter_application_3/GameCollection/runGame.dart';
+import 'package:flutter_application_3/runGame.dart';
 class home extends StatelessWidget {
   const home({Key? key}) : super(key: key);
 
@@ -14,7 +14,7 @@ class home extends StatelessWidget {
       ),
       
       backgroundColor: Colors.white,
-      body: Container(
+      body: SingleChildScrollView(
         child: Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
