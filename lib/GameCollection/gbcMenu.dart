@@ -1,48 +1,90 @@
+import 'dart:convert';
+
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:firebase_core/firebase_core.dart';
 
-class GbcMenu extends StatefulWidget {
-  const GbcMenu({Key? key}) : super(key: key);
+import '../drawer.dart';
+import '../home.dart';
+import '../runGame.dart';
 
-  @override
-  State<GbcMenu> createState() => _MyGbcMenu();
+class game {
+  String image;
+  String name;
+  String gamelink;
+  game({
+    required this.name,
+    required this.image,
+    required this.gamelink,
+  });
+
+  static game fromJson(Map<String, dynamic> json) => game(
+        image: json['image'],
+        name: json['name'],
+        gamelink: json['game'],
+      );
 }
 
-class _MyGbcMenu extends State<GbcMenu> {
+class GBCMenu extends StatefulWidget {
+  const GBCMenu({Key? key}) : super(key: key);
+
   @override
-  Widget build(BuildContext context) {
+  State<GBCMenu> createState() => _GBCMenu();
+}
+
+class _GBCMenu extends State<GBCMenu> {
+  @override
+  Widget build(
+    BuildContext context,
+  ) {
     return Scaffold(
         appBar: AppBar(
-          title: const Text('GBC'),
+          title: const Text('Gameboy Color'),
+          actions: [
+            IconButton(
+                onPressed: () => Navigator.push(
+                    context, MaterialPageRoute(builder: (context) => home())),
+                icon: Icon(Icons.home))
+          ],
         ),
-        drawer: Drawer(
-          child: ListView(
-            padding: EdgeInsets.zero,
-            children: <Widget>[
-              Image.network(
-                  'https://www.macthai.com/wp-content/uploads/2015/05/nintendo-characters-800x345.jpg'),
-              ListTile(
-                title: Text('หน้าแรก'),
-                onTap: () {
-                  Navigator.pushNamed(context, '/home');
-                },
-              ),
-              ListTile(
-                title: Text('โปรไฟล์'),
-                onTap: () {},
-              ),
-              ListTile(
-                title: Text('ตั้งค่า'),
-                onTap: () {},
-              ),
-              ListTile(
-                title: Text('ออกจากระบบ'),
-                onTap: () {},
-              ),
-            ],
-          ),
-        ),
-        body: Center(
-          child: Text('body'),
+        drawer: drawer(context),
+        body: StreamBuilder<List<game>>(
+          stream: readgames(),
+          builder: (
+            context,
+            snapshot,
+          ) {
+            if (snapshot.hasError) {
+              return Text("Error");
+            } else if (snapshot.hasData) {
+              final games = snapshot.data!;
+              return ListView(
+                children: games.map(buildGame).toList(),
+              );
+            } else {
+              return Center(
+                child: CircularProgressIndicator(),
+              );
+            }
+          },
         ));
   }
+
+  Widget buildGame(game game) => ListTile(
+        leading: ClipRRect(
+          borderRadius: BorderRadius.circular(0), //or 15.0
+          child: Image(image: NetworkImage(game.image)),
+        ),
+        title: Text(game.name),
+        onTap: () => Navigator.push(context,
+            MaterialPageRoute(builder: (context) => runGame(game.gamelink))),
+      );
+
+  Stream<List<game>> readgames() => FirebaseFirestore.instance
+      .collection('game')
+      .where('type', isEqualTo: 'gbc')
+      .snapshots()
+      .map((snapshot) =>
+          snapshot.docs.map((doc) => game.fromJson(doc.data())).toList());
 }
