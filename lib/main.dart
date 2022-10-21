@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_application_3/gameHistory.dart';
 import 'package:flutter_application_3/home.dart';
 import 'package:flutter_application_3/runGame.dart';
 import 'package:firebase_core/firebase_core.dart';
@@ -6,7 +7,7 @@ import 'package:firebase_core/firebase_core.dart';
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
-  runApp( MyApp());
+  runApp(MyApp());
 }
 
 class MyApp extends StatelessWidget {
@@ -19,7 +20,7 @@ class MyApp extends StatelessWidget {
 }
 
 MaterialApp buildMaterialApp() {
-  return  MaterialApp(
+  return MaterialApp(
     title: 'FireStore Demo',
     theme: ThemeData(
       primarySwatch: Colors.amber,
@@ -27,6 +28,7 @@ MaterialApp buildMaterialApp() {
     initialRoute: '/',
     routes: {
       '/': (context) => home(),
+      // '/game': (context) => gamehis(),
     },
   );
 }
