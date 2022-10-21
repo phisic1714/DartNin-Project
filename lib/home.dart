@@ -1,9 +1,12 @@
+import 'dart:ui';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_application_3/GameCollection/gbcMenu.dart';
 import 'package:flutter_application_3/GameCollection/nesMenu.dart';
 import 'package:flutter_application_3/GameCollection/snesMenu.dart';
 import 'package:flutter_application_3/drawer.dart';
 import 'package:flutter_application_3/runGame.dart';
+
 class home extends StatelessWidget {
   const home({Key? key}) : super(key: key);
 
@@ -31,10 +34,12 @@ class home extends StatelessWidget {
                 ElevatedButton(
                   child: Text('SNES'),
                   onPressed: () {
-                    Navigator.push(context,
-            MaterialPageRoute(
-              builder: (context) => const SnesMenu(),
-            ),);
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => const SnesMenu(),
+                      ),
+                    );
                   },
                 ),
                 Image(
@@ -46,10 +51,12 @@ class home extends StatelessWidget {
                 ElevatedButton(
                   child: Text('GBC'),
                   onPressed: () {
-                    Navigator.push(context,
-            MaterialPageRoute(
-              builder: (context) => const GBCMenu(),
-            ),);
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => const GBCMenu(),
+                      ),
+                    );
                   },
                 ),
                 Image(
@@ -61,10 +68,12 @@ class home extends StatelessWidget {
                 ElevatedButton(
                   child: Text('NES'),
                   onPressed: () {
-                    Navigator.push(context,
-            MaterialPageRoute(
-              builder: (context) => const NesMenu(),
-            ),);
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => const NesMenu(),
+                      ),
+                    );
                   },
                 ),
               ],

@@ -3,10 +3,12 @@ import 'package:flutter_application_3/home.dart';
 import 'package:flutter_application_3/runGame.dart';
 import 'package:firebase_core/firebase_core.dart';
 
+import 'GameHistory/SNES.dart';
+
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
-  runApp( MyApp());
+  runApp(MyApp());
 }
 
 class MyApp extends StatelessWidget {
@@ -19,7 +21,7 @@ class MyApp extends StatelessWidget {
 }
 
 MaterialApp buildMaterialApp() {
-  return  MaterialApp(
+  return MaterialApp(
     title: 'FireStore Demo',
     theme: ThemeData(
       primarySwatch: Colors.amber,
