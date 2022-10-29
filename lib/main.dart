@@ -28,7 +28,7 @@ MaterialApp buildMaterialApp() {
     initialRoute: '/',
     routes: {
       '/': (context) => home(),
-      // '/game': (context) => gamehis(),
+      '/game': (context) => gamehis(),
     },
   );
 }
