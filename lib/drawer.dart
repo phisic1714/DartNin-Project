@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_application_3/GameHistory/SNES.dart';
+import 'package:flutter_application_3/GameHistory/homeHistory.dart';
+import 'package:flutter_application_3/aboutUs.dart';
 
 import 'home.dart';
 
@@ -31,12 +32,23 @@ Drawer drawer(BuildContext context) {
         ListTile(
           leading: Icon(Icons.gamepad),
           title: Text('ประวัติเกม'),
+          onTap: () {
+            Navigator.push(
+                context, MaterialPageRoute(builder: (context) => homeHis()));
+          },
+        ),
+        ListTile(
+          leading: Icon(Icons.logout),
+          title: Text('ออกจากระบบ'),
           onTap: () {},
         ),
         ListTile(
-          leading: Icon(Icons.person),
-          title: Text('ออกจากระบบ'),
-          onTap: () {},
+          leading: Icon(Icons.group),
+          title: Text('About US'),
+          onTap: () {
+            Navigator.push(
+                context, MaterialPageRoute(builder: (context) => about()));
+          },
         ),
       ],
     ),

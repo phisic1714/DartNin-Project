@@ -4,17 +4,20 @@ import 'package:flutter/material.dart';
 import 'package:flutter_application_3/GameCollection/gbcMenu.dart';
 import 'package:flutter_application_3/GameCollection/nesMenu.dart';
 import 'package:flutter_application_3/GameCollection/snesMenu.dart';
+import 'package:flutter_application_3/GameHistory/gbcHIs.dart';
+import 'package:flutter_application_3/GameHistory/nesHIs.dart';
+import 'package:flutter_application_3/GameHistory/sneshis.dart';
 import 'package:flutter_application_3/drawer.dart';
 import 'package:flutter_application_3/runGame.dart';
 
-class home extends StatelessWidget {
-  const home({Key? key}) : super(key: key);
+class homeHis extends StatelessWidget {
+  const homeHis({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-          title: Text('HOME'),
+          title: Text('game history'),
         ),
         drawer: drawer(context),
         backgroundColor: Colors.white,
@@ -28,13 +31,13 @@ class home extends StatelessWidget {
               trailing: Icon(Icons.arrow_forward_ios),
               shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(40)),
-              tileColor: Colors.pinkAccent,
+              tileColor: Colors.green,
               textColor: Colors.white,
               onTap: () {
                 Navigator.push(
                   context,
                   MaterialPageRoute(
-                    builder: (context) => const SnesMenu(),
+                    builder: (context) => const snesHis(),
                   ),
                 );
               },
@@ -49,13 +52,13 @@ class home extends StatelessWidget {
             trailing: Icon(Icons.arrow_forward_ios),
             shape:
                 RoundedRectangleBorder(borderRadius: BorderRadius.circular(40)),
-            tileColor: Colors.pinkAccent,
+            tileColor: Colors.green,
             textColor: Colors.white,
             onTap: () {
               Navigator.push(
                 context,
                 MaterialPageRoute(
-                  builder: (context) => const GBCMenu(),
+                  builder: (context) => const gbcHis(),
                 ),
               );
             },
@@ -69,13 +72,13 @@ class home extends StatelessWidget {
               trailing: Icon(Icons.arrow_forward_ios),
               shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(40)),
-              tileColor: Colors.pinkAccent,
+              tileColor: Colors.green,
               textColor: Colors.white,
               onTap: () {
                 Navigator.push(
                   context,
                   MaterialPageRoute(
-                    builder: (context) => const NesMenu(),
+                    builder: (context) => const nesHis(),
                   ),
                 );
               },

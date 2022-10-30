@@ -3,7 +3,7 @@ import 'package:flutter_application_3/home.dart';
 import 'package:flutter_application_3/runGame.dart';
 import 'package:firebase_core/firebase_core.dart';
 
-import 'GameHistory/SNES.dart';
+import 'GameHistory/homeHistory.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
