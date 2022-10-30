@@ -16,18 +16,20 @@ class _runGameState extends State<runGame> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Color.fromARGB(255, 5, 5, 5),
-      appBar: AppBar(
-        title: Text("Playgame"),
-      ),
+      appBar: MediaQuery.of(context).orientation == Orientation.landscape
+          ? null
+          : AppBar(
+              title: Text("Playgame"),
+            ),
       body: Column(children: [gameDisplay(), SingleChildScrollView()]),
     );
   }
 
   SingleChildScrollView gameDisplay() {
-    String game=widget.gamelink;
+    String game = widget.gamelink;
     return SingleChildScrollView(
       child: Container(
-        constraints: BoxConstraints(maxHeight: 300, maxWidth: 600),
+        constraints: BoxConstraints(maxHeight: 360, maxWidth: double.infinity),
         child: WebView(
           zoomEnabled: false,
           initialUrl: //"http://vizzed.net/emulatorjs/index.php?gameID=1324&gameName=Metal%20Gear%20Solid&system=gbc&gameurl=http%3A%2F%2Fwww.vizzed.net%2Fgbc%2Ffiles%2FMetal_Gear_Solid.zip&resolution=Low"
