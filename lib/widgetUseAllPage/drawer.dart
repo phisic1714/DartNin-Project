@@ -1,9 +1,14 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_application_3/gameHistory.dart';
-
-import 'home.dart';
+import '../home.dart';
+import '../main.dart';
 
 Drawer drawer(BuildContext context) {
+  
+  Future<void> _signOut() async {
+  await FirebaseAuth.instance.signOut();
+}
   return Drawer(
     child: ListView(
       padding: EdgeInsets.zero,
@@ -32,13 +37,18 @@ Drawer drawer(BuildContext context) {
           leading: Icon(Icons.gamepad),
           title: Text('ประวัติเกม'),
           onTap: () {
-            Navigator.pushNamed(context, "/game");
+            Navigator.push(
+            context,
+            MaterialPageRoute(builder: (context) => const gamehis()));
           },
         ),
         ListTile(
           leading: Icon(Icons.exit_to_app),
           title: Text('ออกจากระบบ'),
-          onTap: () {},
+          onTap: () { _signOut();
+            Navigator.push(
+            context,
+            MaterialPageRoute(builder: (context) => const LoginPage(title: '',)));},
         ),
         ListTile(
           leading: Icon(Icons.person),

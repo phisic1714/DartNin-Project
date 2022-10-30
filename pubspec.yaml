@@ -37,6 +37,7 @@ dependencies:
   cupertino_icons: ^1.0.2
   firebase_core: ^1.12.0
   cloud_firestore: ^3.1.7
+  firebase_storage: ^10.1.0
   path_provider: ^2.0.8
   firebase_auth: ^3.3.6
   datetime_picker_formfield: ^2.0.0
@@ -65,6 +66,7 @@ flutter_icons:
   ios: true
   image_path: "assets/ic_launcher_adaptive_fore.png"
 flutter:
+  
 
   # The following line ensures that the Material Icons font is
   # included with your application, so that you can use the icons in
@@ -73,7 +75,11 @@ flutter:
 
   # To add assets to your application, add an assets section, like this:
   assets:
-     - "assets/Free_Sample_By_Wix-removebg-preview.png"
+      - assets/login.png
+      - assets/mario.png
+      - assets/login2.jpg
+      - assets/nin.png
+      - "assets/Free_Sample_By_Wix-removebg-preview.png"
   #   - images/a_dot_ham.jpeg
 
   # An image asset can refer to one or more resolution-specific "variants", see
