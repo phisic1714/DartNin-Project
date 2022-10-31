@@ -27,15 +27,28 @@ class _runGameState extends State<runGame> {
 
   SingleChildScrollView gameDisplay() {
     String game = widget.gamelink;
-    return SingleChildScrollView(
-      child: Container(
-        constraints: BoxConstraints(maxHeight: 360, maxWidth: double.infinity),
-        child: WebView(
-          zoomEnabled: false,
-          initialUrl: //"http://vizzed.net/emulatorjs/index.php?gameID=1324&gameName=Metal%20Gear%20Solid&system=gbc&gameurl=http%3A%2F%2Fwww.vizzed.net%2Fgbc%2Ffiles%2FMetal_Gear_Solid.zip&resolution=Low"
-              Uri.dataFromString('''<iframe src="$game" 
+    String? linkgame;
+    if (game.contains('vizzed')) {
+      linkgame = game;
+    } else if (game.contains('retrogames')) {
+      linkgame = Uri.dataFromString('''<iframe src="$game" 
               width=100% 
               height=100% 
+              frameborder="no" 
+              allowfullscreen="true" 
+              webkitallowfullscreen="true" 
+              mozallowfullscreen="true" 
+              scrolling="no"></iframe>''', mimeType: 'text/html').toString();
+    }
+    return SingleChildScrollView(
+      child: Container(
+        constraints: BoxConstraints(
+            maxHeight: 360, maxWidth: double.infinity), //360double.infinity
+        child: WebView(
+          zoomEnabled: false,
+          initialUrl: Uri.dataFromString('''<iframe src="$game" 
+              width=100% 
+              height='500'
               frameborder="no" 
               allowfullscreen="true" 
               webkitallowfullscreen="true" 

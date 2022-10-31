@@ -48,7 +48,6 @@ class _SnesMenu extends State<SnesMenu> {
                 icon: Icon(Icons.home))
           ],
         ),
-        drawer: drawer(context),
         body: StreamBuilder<List<game>>(
           stream: readgames(),
           builder: (
@@ -74,7 +73,8 @@ class _SnesMenu extends State<SnesMenu> {
   Widget buildGame(game game) => ListTile(
         leading: ClipRRect(
           borderRadius: BorderRadius.circular(0), //or 15.0
-          child: Image(image: NetworkImage(game.image)),
+          child: Image(image: NetworkImage(game.image) ,height: 70.0,
+        width: 70.0),
         ),
         title: Text(game.name),
         onTap: () => Navigator.push(context,

@@ -9,6 +9,7 @@ import 'package:flutter_application_3/GameHistory/nesHIs.dart';
 import 'package:flutter_application_3/GameHistory/sneshis.dart';
 import 'package:flutter_application_3/widget Always Use/drawer.dart';
 import 'package:flutter_application_3/runGame.dart';
+import '../home.dart';
 
 class homeHis extends StatelessWidget {
   const homeHis({Key? key}) : super(key: key);
@@ -18,6 +19,12 @@ class homeHis extends StatelessWidget {
     return Scaffold(
         appBar: AppBar(
           title: Text('game history'),
+          actions: [
+            IconButton(
+                onPressed: () => Navigator.push(
+                    context, MaterialPageRoute(builder: (context) => home())),
+                icon: Icon(Icons.home))
+          ],
         ),
         drawer: drawer(context),
         backgroundColor: Colors.white,
