@@ -55,15 +55,15 @@ class _LoginPageState extends State<LoginPage> {
                       email: email!, password: password!)
                   .then((value) {
                 if (value.user!.emailVerified) {
-                  Scaffold.of(_formstate.currentContext!)
+                  ScaffoldMessenger.of(_formstate.currentContext!)
                       .showSnackBar(SnackBar(content: Text('Login Pass')));
                   Navigator.pushReplacementNamed(context, '/homepage');
                 } else {
-                  Scaffold.of(_formstate.currentContext!).showSnackBar(
+                  ScaffoldMessenger.of(_formstate.currentContext!).showSnackBar(
                       SnackBar(content: Text('Please verify email')));
                 }
               }).catchError((reason) {
-                Scaffold.of(_formstate.currentContext!).showSnackBar(
+                ScaffoldMessenger.of(_formstate.currentContext!).showSnackBar(
                     SnackBar(content: Text('Login or Password Invalid')));
               });
             } on FirebaseAuthException catch (e) {
