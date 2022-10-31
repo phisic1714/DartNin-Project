@@ -5,7 +5,7 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
 
-void main() async {
+Future <void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
   runApp(MyApp());
@@ -15,20 +15,13 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      home: buildMaterialApp(),
-    );
-  }
-}
-
-MaterialApp buildMaterialApp() {
-  return MaterialApp(
-    title: 'FireStore Demo',
+       title: 'FireStore Demo',
     theme: ThemeData(
       primarySwatch: Colors.amber,
     ),
-    initialRoute: '/',
-    home: LoginPage(title: 'Flutter login Page'),
-  );
+      home: FirebaseAuth.instance.currentUser == null ? LoginPage(title: 'Flutter login Page') :  home() ,
+    );
+  }
 }
 
 class LoginPage extends StatefulWidget {

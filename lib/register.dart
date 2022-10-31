@@ -20,6 +20,7 @@ class _RegisterPageState extends State<RegisterPage> {
     return Stack(children: <Widget>[
       backgroudImage(),
       Scaffold(
+        resizeToAvoidBottomInset : false,
         backgroundColor: Colors.transparent,
         body: Form(
           key: _formstate,

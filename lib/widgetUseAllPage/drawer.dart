@@ -6,9 +6,6 @@ import '../main.dart';
 
 Drawer drawer(BuildContext context) {
   
-  Future<void> _signOut() async {
-  await FirebaseAuth.instance.signOut();
-}
   return Drawer(
     child: ListView(
       padding: EdgeInsets.zero,
@@ -58,4 +55,8 @@ Drawer drawer(BuildContext context) {
       ],
     ),
   );
+}
+
+Future<void> _signOut() async {
+  await FirebaseAuth.instance.signOut();
 }
