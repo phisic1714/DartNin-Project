@@ -20,7 +20,7 @@ class _RegisterPageState extends State<RegisterPage> {
     return Stack(children: <Widget>[
       backgroudImage(),
       Scaffold(
-        resizeToAvoidBottomInset : false,
+        resizeToAvoidBottomInset: false,
         backgroundColor: Colors.transparent,
         body: Form(
           key: _formstate,
@@ -49,7 +49,10 @@ class _RegisterPageState extends State<RegisterPage> {
         _user.user!.sendEmailVerification();
         Navigator.push(
             context,
-            MaterialPageRoute(builder: (context) => const LoginPage(title: '',)));
+            MaterialPageRoute(
+                builder: (context) => const LoginPage(
+                      title: '',
+                    )));
       },
       style: ButtonStyle(
           foregroundColor: MaterialStateProperty.all(Colors.white),
@@ -68,6 +71,7 @@ class _RegisterPageState extends State<RegisterPage> {
 
   TextFormField buildPasswordField() {
     return TextFormField(
+      style: const TextStyle(color: Colors.white),
       controller: password,
       validator: (value) {
         if (value!.length < 8)
@@ -91,6 +95,7 @@ class _RegisterPageState extends State<RegisterPage> {
 
   TextFormField buildEmailField() {
     return TextFormField(
+      style: const TextStyle(color: Colors.white),
       controller: email,
       validator: (value) {
         if (value!.isEmpty)
