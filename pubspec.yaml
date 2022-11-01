@@ -79,19 +79,12 @@ flutter:
       - assets/mario.png
       - assets/login2.jpg
       - assets/nin.png
-<<<<<<< HEAD
       - assets/Free_Sample_By_Wix-removebg-preview.png
-      - assets/snes.jpg
-      - assets/nes.jpg
-      - assets/gbc.jpg
-=======
       - assets/snes.jpg
       - assets/nes.jpg
       - assets/gbc.jpg
       - assets/Peera.jpg
       - assets/P.jpg
-      - "assets/Free_Sample_By_Wix-removebg-preview.png"
->>>>>>> 94daeb180434cd8a0a3b32a2de8164d4d3a14c92
   #   - images/a_dot_ham.jpeg
 
   # An image asset can refer to one or more resolution-specific "variants", see

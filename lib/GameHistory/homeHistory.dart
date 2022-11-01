@@ -7,14 +7,10 @@ import 'package:flutter_application_3/GameCollection/snesMenu.dart';
 import 'package:flutter_application_3/GameHistory/gbcHIs.dart';
 import 'package:flutter_application_3/GameHistory/nesHIs.dart';
 import 'package:flutter_application_3/GameHistory/sneshis.dart';
-<<<<<<< HEAD
 import 'package:flutter_application_3/widget Always Use/drawer.dart';
 import 'package:flutter_application_3/runGame.dart';
 import '../home.dart';
-=======
 import 'package:flutter_application_3/runGame.dart';
-import 'package:flutter_application_3/widgetUseAllPage/drawer.dart';
->>>>>>> 94daeb180434cd8a0a3b32a2de8164d4d3a14c92
 
 class homeHis extends StatelessWidget {
   const homeHis({Key? key}) : super(key: key);
