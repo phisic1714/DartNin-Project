@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:webview_flutter/webview_flutter.dart';
 
 class runGame extends StatefulWidget {
@@ -14,6 +15,12 @@ void j() {}
 class _runGameState extends State<runGame> {
   @override
   Widget build(BuildContext context) {
+    SystemChrome.setPreferredOrientations([
+      DeviceOrientation.landscapeRight,
+      DeviceOrientation.landscapeLeft,
+      DeviceOrientation.portraitUp,
+      DeviceOrientation.portraitDown,
+    ]);
     return Scaffold(
       backgroundColor: Color.fromARGB(255, 5, 5, 5),
       appBar: MediaQuery.of(context).orientation == Orientation.landscape
@@ -21,34 +28,30 @@ class _runGameState extends State<runGame> {
           : AppBar(
               title: Text("Playgame"),
             ),
-      body: Column(children: [gameDisplay(), SingleChildScrollView()]),
+      body: Stack(children: [gameDisplay(), const SingleChildScrollView()]),
     );
   }
 
   SingleChildScrollView gameDisplay() {
     String game = widget.gamelink;
-    String? linkgame;
+    String? height;
+    double sizes=370;
     if (game.contains('vizzed')) {
-      linkgame = game;
-    } else if (game.contains('retrogames')) {
-      linkgame = Uri.dataFromString('''<iframe src="$game" 
-              width=100% 
-              height=100% 
-              frameborder="no" 
-              allowfullscreen="true" 
-              webkitallowfullscreen="true" 
-              mozallowfullscreen="true" 
-              scrolling="no"></iframe>''', mimeType: 'text/html').toString();
+      height = '"500"';
+      if(MediaQuery.of(context).orientation == Orientation.portrait){sizes=190;} 
+    } else {
+      height = '100%';
     }
     return SingleChildScrollView(
+      physics: NeverScrollableScrollPhysics(),
       child: Container(
         constraints: BoxConstraints(
-            maxHeight: 360, maxWidth: double.infinity), //360double.infinity
+            maxHeight: sizes, maxWidth: double.infinity), //360double.infinity
         child: WebView(
           zoomEnabled: false,
           initialUrl: Uri.dataFromString('''<iframe src="$game" 
               width=100% 
-              height='500'
+              height= $height
               frameborder="no" 
               allowfullscreen="true" 
               webkitallowfullscreen="true" 

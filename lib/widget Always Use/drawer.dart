@@ -1,6 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_application_3/GameHistory/homeHistory.dart';
+import '../aboutUs.dart';
 import '../home.dart';
 import '../main.dart';
 
@@ -50,7 +51,9 @@ Drawer drawer(BuildContext context) {
         ListTile(
           leading: Icon(Icons.person),
           title: Text('กลุ่มผู้พัฒนา'),
-          onTap: () {},
+          onTap: () {Navigator.push(
+            context,
+            MaterialPageRoute(builder: (context) => const about()));},
         ),
       ],
     ),
