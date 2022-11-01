@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter_application_3/main.dart';
 
 class ResetPassword extends StatefulWidget {
   @override
@@ -7,7 +8,7 @@ class ResetPassword extends StatefulWidget {
 }
 
 class _ResetPasswordState extends State<ResetPassword> {
-  late String _email;
+  late String email;
   final auth = FirebaseAuth.instance;
 
   @override
@@ -25,7 +26,7 @@ class _ResetPasswordState extends State<ResetPassword> {
               decoration: InputDecoration(hintText: 'Email'),
               onChanged: (value) {
                 setState(() {
-                  _email = value.trim();
+                  email = value.trim();
                 });
               },
             ),
@@ -36,7 +37,7 @@ class _ResetPasswordState extends State<ResetPassword> {
               ElevatedButton(
                 child: Text('Send Request'),
                 onPressed: () {
-                  auth.sendPasswordResetEmail(email: _email);
+                  auth.sendPasswordResetEmail(email: email);
                   Navigator.of(context).pop();
                 },
               ),
