@@ -15,10 +15,13 @@ class _ResetPasswordState extends State<ResetPassword> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        backgroundColor: Colors.transparent,
         title: Text('Reset Password'),
       ),
       body: Column(
         children: [
+          backgroudImage(),
+          Image.asset("assets/nin.png"),
           Padding(
             padding: const EdgeInsets.all(8.0),
             child: TextField(
@@ -44,6 +47,26 @@ class _ResetPasswordState extends State<ResetPassword> {
             ],
           ),
         ],
+      ),
+    );
+  }
+
+  Widget backgroudImage() {
+    return ShaderMask(
+      shaderCallback: (bounds) => LinearGradient(
+        colors: [Colors.black, Colors.black12],
+        begin: Alignment.bottomCenter,
+        end: Alignment.center,
+      ).createShader(bounds),
+      blendMode: BlendMode.darken,
+      child: Container(
+        decoration: BoxDecoration(
+          image: DecorationImage(
+            image: AssetImage("assets/mario.png"),
+            fit: BoxFit.cover,
+            colorFilter: ColorFilter.mode(Colors.black45, BlendMode.darken),
+          ),
+        ),
       ),
     );
   }
