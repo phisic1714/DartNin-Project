@@ -224,4 +224,19 @@ class _LoginPageState extends State<LoginPage> {
       ),
     );
   }
+
+  Widget forgotPassword(BuildContext context) {
+    return Container(
+      width: MediaQuery.of(context).size.width,
+      height: 35,
+      alignment: Alignment.bottomRight,
+      child: TextButton(
+          child: Text(
+            "Forgot Password",
+            style: TextStyle(color: Colors.white),
+            textAlign: TextAlign.right,
+          ),
+          onPressed: () {}),
+    );
+  }
 }
