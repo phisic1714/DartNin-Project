@@ -39,7 +39,7 @@ class about extends StatelessWidget {
         Container(
           color: Color.fromARGB(255, 67, 207, 125),
           child: Image.asset(
-            'assets/snes.jpg',
+            'assets/payupat.jpg',
             width: 150,
             height: 180,
           ),
