@@ -5,8 +5,11 @@ import 'package:flutter_application_3/home.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
+<<<<<<< HEAD
 import 'Allgame.dart';
 
+=======
+>>>>>>> 94daeb180434cd8a0a3b32a2de8164d4d3a14c92
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
@@ -23,7 +26,11 @@ class MyApp extends StatelessWidget {
       ),
       home: FirebaseAuth.instance.currentUser == null
           ? LoginPage(title: 'Flutter login Page')
+<<<<<<< HEAD
           : Allgame(),
+=======
+          : home(),
+>>>>>>> 94daeb180434cd8a0a3b32a2de8164d4d3a14c92
     );
   }
 }

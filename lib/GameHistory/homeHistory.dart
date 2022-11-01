@@ -7,9 +7,14 @@ import 'package:flutter_application_3/GameCollection/snesMenu.dart';
 import 'package:flutter_application_3/GameHistory/gbcHIs.dart';
 import 'package:flutter_application_3/GameHistory/nesHIs.dart';
 import 'package:flutter_application_3/GameHistory/sneshis.dart';
+<<<<<<< HEAD
 import 'package:flutter_application_3/widget Always Use/drawer.dart';
 import 'package:flutter_application_3/runGame.dart';
 import '../home.dart';
+=======
+import 'package:flutter_application_3/runGame.dart';
+import 'package:flutter_application_3/widgetUseAllPage/drawer.dart';
+>>>>>>> 94daeb180434cd8a0a3b32a2de8164d4d3a14c92
 
 class homeHis extends StatelessWidget {
   const homeHis({Key? key}) : super(key: key);
@@ -27,19 +32,22 @@ class homeHis extends StatelessWidget {
           ],
         ),
         drawer: drawer(context),
-        backgroundColor: Colors.white,
+        //backgroundColor: Image.asset("assets/mario.png"),
         body: ListView(children: [
           Card(
             child: ListTile(
+              //minVerticalPadding: 10.0,
               leading: Image.asset(
                 'assets/snes.jpg',
               ),
               title: Text('SNES'),
+              subtitle: Text('Super Nintendo Entertainment System'),
               trailing: Icon(Icons.arrow_forward_ios),
               shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(40)),
               tileColor: Colors.green,
               textColor: Colors.white,
+              iconColor: Colors.white,
               onTap: () {
                 Navigator.push(
                   context,
@@ -52,15 +60,18 @@ class homeHis extends StatelessWidget {
           ),
           Card(
               child: ListTile(
+            //minVerticalPadding: 23.0,
             leading: Image.asset(
               'assets/gbc.jpg',
             ),
             title: Text('GBC'),
+            subtitle: Text('Gameboy Color'),
             trailing: Icon(Icons.arrow_forward_ios),
             shape:
                 RoundedRectangleBorder(borderRadius: BorderRadius.circular(40)),
             tileColor: Colors.green,
             textColor: Colors.white,
+            iconColor: Colors.white,
             onTap: () {
               Navigator.push(
                 context,
@@ -72,15 +83,18 @@ class homeHis extends StatelessWidget {
           )),
           Card(
             child: ListTile(
+              //minVerticalPadding: 25.0,
               leading: Image.asset(
                 'assets/nes.jpg',
               ),
               title: Text('NES'),
+              subtitle: Text('Nintendo Entertainment System'),
               trailing: Icon(Icons.arrow_forward_ios),
               shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(40)),
               tileColor: Colors.green,
               textColor: Colors.white,
+              iconColor: Colors.white,
               onTap: () {
                 Navigator.push(
                   context,
