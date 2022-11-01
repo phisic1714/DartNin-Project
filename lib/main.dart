@@ -3,6 +3,7 @@ import 'package:flutter_application_3/register.dart';
 import 'package:flutter_application_3/home.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter_application_3/resetPassword.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -57,6 +58,7 @@ class _LoginPageState extends State<LoginPage> {
               passwordTextFormField(),
               loginButton(),
               registerButton(context),
+              forgotPassword(context)
             ],
           ),
         ),
@@ -165,78 +167,79 @@ class _LoginPageState extends State<LoginPage> {
     );
   }
 
-  TextFormField emailTextFormField() {
-    return TextFormField(
-      style: const TextStyle(color: Colors.white),
-      onSaved: (value) {
-        email = value!.trim();
-      },
-      validator: (value) {
-        if (!validateEmail(value!))
-          return 'Please fill in E-mail field';
-        else
-          return null;
-      },
-      keyboardType: TextInputType.emailAddress,
-      textInputAction: TextInputAction.next,
-      decoration: const InputDecoration(
-        labelText: 'E-mail',
-        labelStyle: TextStyle(
-            color: Colors.white, fontSize: 25, fontWeight: FontWeight.bold),
-        icon: Icon(
-          Icons.email,
-          color: Colors.white,
-        ),
-        iconColor: Colors.white,
-        hintText: 'x@x.com',
-        hintStyle: TextStyle(
-          color: Colors.white,
-        ),
-      ),
-    );
-  }
-
-  bool validateEmail(String value) {
-    RegExp regex = RegExp(
-        r'^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$');
-
-    return (!regex.hasMatch(value)) ? false : true;
-  }
-
-  Widget backgroudImage() {
-    return ShaderMask(
-      shaderCallback: (bounds) => LinearGradient(
-        colors: [Colors.black, Colors.black12],
-        begin: Alignment.bottomCenter,
-        end: Alignment.center,
-      ).createShader(bounds),
-      blendMode: BlendMode.darken,
-      child: Container(
-        decoration: BoxDecoration(
-          image: DecorationImage(
-            image: AssetImage("assets/mario.png"),
-
-            /// change this to your  image directory
-            fit: BoxFit.cover,
-            colorFilter: ColorFilter.mode(Colors.black45, BlendMode.darken),
-          ),
-        ),
-      ),
-    );
-  }
-
   Widget forgotPassword(BuildContext context) {
     return Container(
-      width: MediaQuery.of(context).size.width,
-      height: 35,
-      alignment: Alignment.bottomRight,
-      child: TextButton(
-          child: Text(
-            "Forgot Password",
-            style: TextStyle(color: Colors.white),
-            textAlign: TextAlign.right,
-          ),
-          onPressed: () {}),
-    );
+        width: MediaQuery.of(context).size.width,
+        height: 35,
+        alignment: Alignment.center,
+        child: TextButton(
+            child: Text(
+              "Forgot Password",
+              style: TextStyle(color: Colors.white),
+              textAlign: TextAlign.center,
+            ),
+            onPressed: () => Navigator.of(context).push(
+                  MaterialPageRoute(builder: (context) => ResetPassword()),
+                )));
   }
+}
+
+TextFormField emailTextFormField() {
+  return TextFormField(
+    style: const TextStyle(color: Colors.white),
+    onSaved: (value) {
+      email = value!.trim();
+    },
+    validator: (value) {
+      if (!validateEmail(value!))
+        return 'Please fill in E-mail field';
+      else
+        return null;
+    },
+    keyboardType: TextInputType.emailAddress,
+    textInputAction: TextInputAction.next,
+    decoration: const InputDecoration(
+      labelText: 'E-mail',
+      labelStyle: TextStyle(
+          color: Colors.white, fontSize: 25, fontWeight: FontWeight.bold),
+      icon: Icon(
+        Icons.email,
+        color: Colors.white,
+      ),
+      iconColor: Colors.white,
+      hintText: 'x@x.com',
+      hintStyle: TextStyle(
+        color: Colors.white,
+      ),
+    ),
+  );
+}
+
+bool validateEmail(String value) {
+  RegExp regex = RegExp(
+      r'^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$');
+
+  return (!regex.hasMatch(value)) ? false : true;
+}
+
+Widget backgroudImage() {
+  return ShaderMask(
+    shaderCallback: (bounds) => LinearGradient(
+      colors: [Colors.black, Colors.black12],
+      begin: Alignment.bottomCenter,
+      end: Alignment.center,
+    ).createShader(bounds),
+    blendMode: BlendMode.darken,
+    child: Container(
+      decoration: BoxDecoration(
+        image: DecorationImage(
+          image: AssetImage("assets/mario.png"),
+
+          /// change this to your  image directory
+          fit: BoxFit.cover,
+          colorFilter: ColorFilter.mode(Colors.black45, BlendMode.darken),
+        ),
+      ),
+    ),
+  );
 }
