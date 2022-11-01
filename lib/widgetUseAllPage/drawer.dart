@@ -1,11 +1,12 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_application_3/aboutUs.dart';
 import 'package:flutter_application_3/gameHistory.dart';
+import '../GameHistory/homeHistory.dart';
 import '../home.dart';
 import '../main.dart';
 
 Drawer drawer(BuildContext context) {
-  
   return Drawer(
     child: ListView(
       padding: EdgeInsets.zero,
@@ -34,23 +35,30 @@ Drawer drawer(BuildContext context) {
           leading: Icon(Icons.gamepad),
           title: Text('ประวัติเกม'),
           onTap: () {
-            Navigator.push(
-            context,
-            MaterialPageRoute(builder: (context) => const gamehis()));
+            Navigator.push(context,
+                MaterialPageRoute(builder: (context) => const homeHis()));
           },
         ),
         ListTile(
           leading: Icon(Icons.exit_to_app),
           title: Text('ออกจากระบบ'),
-          onTap: () { _signOut();
+          onTap: () {
+            _signOut();
             Navigator.push(
-            context,
-            MaterialPageRoute(builder: (context) => const LoginPage(title: '',)));},
+                context,
+                MaterialPageRoute(
+                    builder: (context) => const LoginPage(
+                          title: '',
+                        )));
+          },
         ),
         ListTile(
-          leading: Icon(Icons.person),
-          title: Text('กลุ่มผู้พัฒนา'),
-          onTap: () {},
+          leading: Icon(Icons.group),
+          title: Text('About Us'),
+          onTap: () {
+            Navigator.push(context,
+                MaterialPageRoute(builder: (context) => const about()));
+          },
         ),
       ],
     ),
