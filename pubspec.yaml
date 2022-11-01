@@ -84,7 +84,8 @@ flutter:
       - assets/nes.jpg
       - assets/gbc.jpg
       - assets/Peera.jpg
-      - assets/P.jpg
+      - assets/P.jpg     
+      - assets/payupat.jpg
   #   - images/a_dot_ham.jpeg
 
   # An image asset can refer to one or more resolution-specific "variants", see
