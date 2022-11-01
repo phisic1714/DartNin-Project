@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:webview_flutter/webview_flutter.dart';
 
 class runGame extends StatefulWidget {
@@ -14,6 +15,12 @@ void j() {}
 class _runGameState extends State<runGame> {
   @override
   Widget build(BuildContext context) {
+    SystemChrome.setPreferredOrientations([
+      DeviceOrientation.landscapeRight,
+      DeviceOrientation.landscapeLeft,
+      DeviceOrientation.portraitUp,
+      DeviceOrientation.portraitDown,
+    ]);
     return Scaffold(
       backgroundColor: Color.fromARGB(255, 5, 5, 5),
       appBar: MediaQuery.of(context).orientation == Orientation.landscape
@@ -21,21 +28,30 @@ class _runGameState extends State<runGame> {
           : AppBar(
               title: Text("Playgame"),
             ),
-      body: Column(children: [gameDisplay(), SingleChildScrollView()]),
+      body: Stack(children: [gameDisplay(), const SingleChildScrollView()]),
     );
   }
 
   SingleChildScrollView gameDisplay() {
     String game = widget.gamelink;
+    String? height;
+    double sizes=370;
+    if (game.contains('vizzed')) {
+      height = '"500"';
+      if(MediaQuery.of(context).orientation == Orientation.portrait){sizes=190;} 
+    } else {
+      height = '100%';
+    }
     return SingleChildScrollView(
+      physics: NeverScrollableScrollPhysics(),
       child: Container(
-        constraints: BoxConstraints(maxHeight: 360, maxWidth: double.infinity),
+        constraints: BoxConstraints(
+            maxHeight: sizes, maxWidth: double.infinity), //360double.infinity
         child: WebView(
           zoomEnabled: false,
-          initialUrl: //"http://vizzed.net/emulatorjs/index.php?gameID=1324&gameName=Metal%20Gear%20Solid&system=gbc&gameurl=http%3A%2F%2Fwww.vizzed.net%2Fgbc%2Ffiles%2FMetal_Gear_Solid.zip&resolution=Low"
-              Uri.dataFromString('''<iframe src="$game" 
+          initialUrl: Uri.dataFromString('''<iframe src="$game" 
               width=100% 
-              height=100% 
+              height= $height
               frameborder="no" 
               allowfullscreen="true" 
               webkitallowfullscreen="true" 

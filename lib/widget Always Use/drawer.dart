@@ -1,7 +1,10 @@
+import 'dart:async';
+import 'dart:core';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_application_3/GameHistory/homeHistory.dart';
+import '../aboutUs.dart';
 import 'package:flutter_application_3/aboutUs.dart';
-import 'package:flutter_application_3/gameHistory.dart';
 import '../GameHistory/homeHistory.dart';
 import '../home.dart';
 import '../main.dart';
@@ -35,6 +38,9 @@ Drawer drawer(BuildContext context) {
           leading: Icon(Icons.gamepad),
           title: Text('ประวัติเกม'),
           onTap: () {
+            Navigator.push(
+            context,
+            MaterialPageRoute(builder: (context) => const homeHis()));
             Navigator.push(context,
                 MaterialPageRoute(builder: (context) => const homeHis()));
           },
@@ -65,6 +71,6 @@ Drawer drawer(BuildContext context) {
   );
 }
 
-Future<void> _signOut() async {
+Future <void> _signOut() async {
   await FirebaseAuth.instance.signOut();
 }

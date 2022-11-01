@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_application_3/register.dart';
 import 'package:flutter_application_3/home.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'Allgame.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -20,7 +22,7 @@ class MyApp extends StatelessWidget {
       ),
       home: FirebaseAuth.instance.currentUser == null
           ? LoginPage(title: 'Flutter login Page')
-          : home(),
+          : Allgame(),
     );
   }
 }
@@ -40,6 +42,10 @@ class _LoginPageState extends State<LoginPage> {
 
   @override
   Widget build(BuildContext context) {
+    SystemChrome.setPreferredOrientations([
+        DeviceOrientation.portraitUp,
+        DeviceOrientation.portraitDown,
+      ]);
     return Stack(children: <Widget>[
       backgroudImage(),
       Scaffold(
@@ -141,6 +147,7 @@ class _LoginPageState extends State<LoginPage> {
 
   TextFormField passwordTextFormField() {
     return TextFormField(
+      style: const TextStyle(color: Colors.white),
       onSaved: (value) {
         password = value!.trim();
       },
@@ -166,6 +173,7 @@ class _LoginPageState extends State<LoginPage> {
 
   TextFormField emailTextFormField() {
     return TextFormField(
+      style: const TextStyle(color: Colors.white),
       onSaved: (value) {
         email = value!.trim();
       },
