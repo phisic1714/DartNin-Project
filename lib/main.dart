@@ -4,8 +4,7 @@ import 'package:flutter_application_3/home.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
-
-Future <void> main() async {
+Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
   runApp(MyApp());
@@ -15,11 +14,13 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-       title: 'FireStore Demo',
-    theme: ThemeData(
-      primarySwatch: Colors.amber,
-    ),
-      home: FirebaseAuth.instance.currentUser == null ? LoginPage(title: 'Flutter login Page') :  home() ,
+      title: 'FireStore Demo',
+      theme: ThemeData(
+        primarySwatch: Colors.amber,
+      ),
+      home: FirebaseAuth.instance.currentUser == null
+          ? LoginPage(title: 'Flutter login Page')
+          : home(),
     );
   }
 }
@@ -42,7 +43,7 @@ class _LoginPageState extends State<LoginPage> {
     return Stack(children: <Widget>[
       backgroudImage(),
       Scaffold(
-        resizeToAvoidBottomInset : false,
+        resizeToAvoidBottomInset: false,
         backgroundColor: Colors.transparent,
         body: Form(
           autovalidateMode: AutovalidateMode.always,
@@ -70,7 +71,7 @@ class _LoginPageState extends State<LoginPage> {
       onPressed: () {
         print('Go to Register page');
         Navigator.push(
-                    context, MaterialPageRoute(builder: (context) => RegisterPage()));
+            context, MaterialPageRoute(builder: (context) => RegisterPage()));
       },
       style: ButtonStyle(
           foregroundColor: MaterialStateProperty.all(Colors.white),
