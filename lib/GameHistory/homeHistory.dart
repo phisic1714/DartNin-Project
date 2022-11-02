@@ -15,11 +15,14 @@ class homeHis extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
+    return Stack(children: <Widget>[
+      backgroudImage(),
+      Scaffold(
         appBar: AppBar(
           title: Text('game history'),
         ),
         drawer: drawer(context),
+        backgroundColor: Colors.transparent,
         //backgroundColor: Image.asset("assets/mario.png"),
         body: ListView(children: [
           Card(
@@ -31,8 +34,8 @@ class homeHis extends StatelessWidget {
               title: Text('SNES'),
               subtitle: Text('Super Nintendo Entertainment System'),
               trailing: Icon(Icons.arrow_forward_ios),
-              shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(40)),
+              // shape: RoundedRectangleBorder(
+              //    borderRadius: BorderRadius.circular(40)),
               tileColor: Colors.green,
               textColor: Colors.white,
               iconColor: Colors.white,
@@ -55,8 +58,8 @@ class homeHis extends StatelessWidget {
             title: Text('GBC'),
             subtitle: Text('Gameboy Color'),
             trailing: Icon(Icons.arrow_forward_ios),
-            shape:
-                RoundedRectangleBorder(borderRadius: BorderRadius.circular(40)),
+            // shape:
+            //     RoundedRectangleBorder(borderRadius: BorderRadius.circular(40)),
             tileColor: Colors.green,
             textColor: Colors.white,
             iconColor: Colors.white,
@@ -78,8 +81,8 @@ class homeHis extends StatelessWidget {
               title: Text('NES'),
               subtitle: Text('Nintendo Entertainment System'),
               trailing: Icon(Icons.arrow_forward_ios),
-              shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(40)),
+              // shape: RoundedRectangleBorder(
+              //    borderRadius: BorderRadius.circular(40)),
               tileColor: Colors.green,
               textColor: Colors.white,
               iconColor: Colors.white,
@@ -93,6 +96,30 @@ class homeHis extends StatelessWidget {
               },
             ),
           ),
-        ]));
+        ]),
+      ),
+    ]);
   }
+}
+
+Widget backgroudImage() {
+  return ShaderMask(
+    shaderCallback: (bounds) => LinearGradient(
+      colors: [Colors.black, Colors.black12],
+      begin: Alignment.bottomCenter,
+      end: Alignment.center,
+    ).createShader(bounds),
+    blendMode: BlendMode.darken,
+    child: Container(
+      decoration: BoxDecoration(
+        image: DecorationImage(
+          image: AssetImage("assets/bg.png"),
+
+          /// change this to your  image directory
+          fit: BoxFit.cover,
+          //colorFilter: ColorFilter.mode(Colors.black45, BlendMode.darken),
+        ),
+      ),
+    ),
+  );
 }

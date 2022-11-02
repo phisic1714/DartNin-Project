@@ -16,7 +16,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'FireStore Demo',
       theme: ThemeData(
-        primarySwatch: Colors.amber,
+        primarySwatch: Colors.pink,
       ),
       home: FirebaseAuth.instance.currentUser == null
           ? LoginPage(title: 'Flutter login Page')
