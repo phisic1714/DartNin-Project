@@ -9,7 +9,6 @@ import '../widget Always Use/drawer.dart';
 import '../home.dart';
 import '../runGame.dart';
 
-
 class Allgame extends StatefulWidget {
   const Allgame({Key? key}) : super(key: key);
 
@@ -19,9 +18,12 @@ class Allgame extends StatefulWidget {
 
 class _Allgame extends State<Allgame> {
   @override
+  late String search = '';
   Widget build(
     BuildContext context,
-  ) {
+  ) {   
+    
+
     return Scaffold(
         appBar: AppBar(
           title: const Text('Games'),
@@ -33,39 +35,61 @@ class _Allgame extends State<Allgame> {
           ],
         ),
         body: StreamBuilder<QuerySnapshot>(
-          stream: FirebaseFirestore.instance.collection('game').snapshots(),
+          stream: search != '' ? FirebaseFirestore.instance.collection('game').where('name', isGreaterThanOrEqualTo: search)
+ .where('name', isLessThan: search +'z').snapshots():FirebaseFirestore.instance.collection('game').orderBy('name').snapshots(),
           builder: (BuildContext context,
               AsyncSnapshot<QuerySnapshot> querySnapshot) {
             if (querySnapshot.hasError) {
               return Center(child: (Text("Error")));
             } else if (querySnapshot.hasData) {
-              
-              return ListView.builder(
+
+              return Column(children: [Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: TextField(
+            decoration: InputDecoration(
+              hintText: "Search Game...",
+              hintStyle: TextStyle(color: Colors.black)),
+            style: TextStyle(color: Colors.black),
+            onChanged: (value) {
+              // Update the key when the value changes.
+              setState(() => search = value);
+            },
+          ),
+        ),
+        SizedBox(
+          height: 10,
+        ),Expanded(child : ListView.builder(
                 itemCount: querySnapshot.data?.docs.length,
                 itemBuilder: (context, index) {
                   final game = querySnapshot.data?.docs;
-                  return Card(child: ListTile(
-         tileColor: Colors.lightGreen, 
-         textColor: Colors.white,
-        leading: ClipRRect(
-          borderRadius: BorderRadius.circular(360), //or 15.0
-          child: 
-              Image(image: NetworkImage(game![index]["image"]), height: 75, width:75),
-        ),
-        title: Text(game[index]["name"]),
-        onTap: () => Navigator.push(context,
-            MaterialPageRoute(builder: (context) => runGame(game[index]["game"]))),
-      ));
+                  return Card( 
+                      child: ListTile(
+                    tileColor: Colors.lightGreen,
+                    textColor: Colors.white,
+                    leading: ClipRRect(
+                      borderRadius: BorderRadius.circular(360), //or 15.0
+                      child: Image(
+                          image: NetworkImage(game![index]["image"]),
+                          height: 75,
+                          width: 75),
+                    ),
+                    title: Text(game[index]["name"]),
+                    subtitle: Text(game[index]["type"],),
+                    trailing: IconButton(icon: Icon(Icons.star_border), onPressed: (){
+                      //logic to open POPUP window
+                  }),
+                    onTap: () => Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) =>
+                                runGame(game[index]["game"]))),
+                  ));
                 },
-              );
+              ))]);
             } else {
-              
               return Center(child: CircularProgressIndicator());
             }
           },
-        )
-        );
+        ));
   }
-
-
 }
