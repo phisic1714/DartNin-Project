@@ -50,7 +50,7 @@ class _LoginPageState extends State<LoginPage> {
           autovalidateMode: AutovalidateMode.always,
           key: _formstate,
           child: Column(
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            mainAxisAlignment: MainAxisAlignment.spaceAround,
             crossAxisAlignment: CrossAxisAlignment.center,
             children: <Widget>[
               Image.asset("assets/nin.png"),

@@ -28,8 +28,24 @@ class _ResetPasswordState extends State<ResetPassword> {
               Padding(
                 padding: const EdgeInsets.all(8.0),
                 child: TextField(
+                  style: const TextStyle(color: Colors.white),
                   keyboardType: TextInputType.emailAddress,
-                  decoration: InputDecoration(hintText: 'Email'),
+                  decoration: InputDecoration(
+                    labelText: 'E-mail',
+                    labelStyle: TextStyle(
+                        color: Colors.white,
+                        fontSize: 25,
+                        fontWeight: FontWeight.bold),
+                    icon: Icon(
+                      Icons.email,
+                      color: Colors.white,
+                    ),
+                    iconColor: Colors.white,
+                    hintText: 'x@x.com',
+                    hintStyle: TextStyle(
+                      color: Colors.white,
+                    ),
+                  ),
                   onChanged: (value) {
                     setState(() {
                       email = value.trim();
