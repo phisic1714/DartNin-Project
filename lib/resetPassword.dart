@@ -13,62 +13,80 @@ class _ResetPasswordState extends State<ResetPassword> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: Colors.transparent,
-      appBar: AppBar(
-        title: Text('Reset Password'),
-      ),
-      body: Column(
-        children: [
-          backgroudImage(),
-          Image.asset("assets/nin.png"),
-          Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: TextField(
-              keyboardType: TextInputType.emailAddress,
-              decoration: InputDecoration(hintText: 'Email'),
-              onChanged: (value) {
-                setState(() {
-                  email = value.trim();
-                });
-              },
-            ),
+    return Stack(
+      children: <Widget>[
+        backgroudImage(),
+        Scaffold(
+          backgroundColor: Colors.transparent,
+          appBar: AppBar(
+            title: Text('Reset Password'),
           ),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceAround,
+          body: Column(
             children: [
-              ElevatedButton(
-                child: Text('Send Request'),
-                onPressed: () {
-                  auth.sendPasswordResetEmail(email: email);
-                  Navigator.of(context).pop();
-                },
-              ),
               backgroudImage(),
+              Image.asset("assets/nin.png"),
+              Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: TextField(
+                  keyboardType: TextInputType.emailAddress,
+                  decoration: InputDecoration(hintText: 'Email'),
+                  onChanged: (value) {
+                    setState(() {
+                      email = value.trim();
+                    });
+                  },
+                ),
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceAround,
+                children: [
+                  ElevatedButton(
+                    child: Text('Send Request'),
+                    onPressed: () {
+                      auth.sendPasswordResetEmail(email: email);
+                      Navigator.of(context).pop();
+                    },
+                    style: ButtonStyle(
+                        foregroundColor:
+                            MaterialStateProperty.all(Colors.white),
+                        backgroundColor:
+                            MaterialStateProperty.all(Colors.black),
+                        shape: MaterialStateProperty.all(
+                          RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(30),
+                          ),
+                        ),
+                        side: MaterialStateProperty.all(const BorderSide(
+                          color: Colors.white,
+                          width: 6,
+                        ))),
+                  ),
+                ],
+              ),
             ],
           ),
-        ],
-      ),
+        )
+      ],
     );
   }
+}
 
-  Widget backgroudImage() {
-    return ShaderMask(
-      shaderCallback: (bounds) => LinearGradient(
-        colors: [Colors.black, Colors.black12],
-        begin: Alignment.bottomCenter,
-        end: Alignment.center,
-      ).createShader(bounds),
-      blendMode: BlendMode.darken,
-      child: Container(
-        decoration: BoxDecoration(
-          image: DecorationImage(
-            image: AssetImage("assets/mario.png"),
-            fit: BoxFit.cover,
-            colorFilter: ColorFilter.mode(Colors.black45, BlendMode.darken),
-          ),
+Widget backgroudImage() {
+  return ShaderMask(
+    shaderCallback: (bounds) => LinearGradient(
+      colors: [Colors.black, Colors.black12],
+      begin: Alignment.bottomCenter,
+      end: Alignment.center,
+    ).createShader(bounds),
+    blendMode: BlendMode.darken,
+    child: Container(
+      decoration: BoxDecoration(
+        image: DecorationImage(
+          image: AssetImage("assets/mario.png"),
+          fit: BoxFit.cover,
+          colorFilter: ColorFilter.mode(Colors.black45, BlendMode.darken),
         ),
       ),
-    );
-  }
+    ),
+  );
 }
