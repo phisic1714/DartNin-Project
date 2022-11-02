@@ -29,11 +29,11 @@ Drawer drawer(BuildContext context) {
           title: Text('โปรไฟล์'),
           onTap: () {},
         ),
-        ListTile(
-          leading: Icon(Icons.settings),
-          title: Text('ตั้งค่า'),
-          onTap: () {},
-        ),
+        //  ListTile(
+        //    leading: Icon(Icons.settings),
+        //   title: Text('ตั้งค่า'),
+        //   onTap: () {},
+        //  ),
         ListTile(
           leading: Icon(Icons.gamepad),
           title: Text('ประวัติเกม'),
