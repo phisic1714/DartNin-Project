@@ -1,29 +1,30 @@
 import 'dart:convert';
+
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
+
 import '../widget Always Use/drawer.dart';
 import '../home.dart';
 import '../runGame.dart';
 
 
-
-class NesMenu extends StatefulWidget {
-  const NesMenu({Key? key}) : super(key: key);
+class Allgame extends StatefulWidget {
+  const Allgame({Key? key}) : super(key: key);
 
   @override
-  State<NesMenu> createState() => _NesMenu();
+  State<Allgame> createState() => _Allgame();
 }
 
-class _NesMenu extends State<NesMenu> {
+class _Allgame extends State<Allgame> {
   @override
   Widget build(
     BuildContext context,
   ) {
     return Scaffold(
         appBar: AppBar(
-          title: const Text('Nintendo Entertainment System'),
+          title: const Text('Games'),
           actions: [
             IconButton(
                 onPressed: () => Navigator.push(
@@ -31,8 +32,8 @@ class _NesMenu extends State<NesMenu> {
                 icon: Icon(Icons.home))
           ],
         ),
-       body: StreamBuilder<QuerySnapshot>(
-          stream: FirebaseFirestore.instance.collection('game').where('type', isEqualTo: 'nes').snapshots(),
+        body: StreamBuilder<QuerySnapshot>(
+          stream: FirebaseFirestore.instance.collection('game').snapshots(),
           builder: (BuildContext context,
               AsyncSnapshot<QuerySnapshot> querySnapshot) {
             if (querySnapshot.hasError) {
@@ -62,8 +63,9 @@ class _NesMenu extends State<NesMenu> {
               return Center(child: CircularProgressIndicator());
             }
           },
-        ));
+        )
+        );
   }
 
-  
+
 }

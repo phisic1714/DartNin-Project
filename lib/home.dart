@@ -4,9 +4,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_application_3/GameCollection/gbcMenu.dart';
 import 'package:flutter_application_3/GameCollection/nesMenu.dart';
 import 'package:flutter_application_3/GameCollection/snesMenu.dart';
+import 'package:flutter_application_3/widget Always Use/drawer.dart';
 //import 'package:flutter_application_3/widget Always Use/drawer.dart';
 import 'package:flutter_application_3/runGame.dart';
-import 'package:flutter_application_3/widgetUseAllPage/drawer.dart';
 
 class home extends StatelessWidget {
   const home({Key? key}) : super(key: key);
@@ -72,8 +72,10 @@ class home extends StatelessWidget {
           )),
           Card(
             child: ListTile(
+              leading: Image.asset(
+                'assets/nes.jpg',
+              ),
               // minVerticalPadding: 25.0,
-              leading: Image.asset('assets/nes.jpg'),
               subtitle: Text('Nintendo Entertainment System'),
               //padding: EdgeInsets.all(8),
               title: Text('NES'),
@@ -98,6 +100,7 @@ class home extends StatelessWidget {
       )
     ]);
   }
+<<<<<<< HEAD
 }
 
 Widget backgroudImage() {
@@ -121,3 +124,6 @@ Widget backgroudImage() {
     ),
   );
 }
+=======
+}
+>>>>>>> 6ab9c06b81d0bbf0e59531fee451d9268a1fa16a
