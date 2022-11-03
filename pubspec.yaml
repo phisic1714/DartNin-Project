@@ -86,6 +86,9 @@ flutter:
       - assets/Peera.jpg
       - assets/P.jpg     
       - assets/payupat.jpg
+      - assets/snesbg.png
+      - assets/nesbg.png
+      - assets/gbcbg.png
       - assets/bg.png
   #   - images/a_dot_ham.jpeg
 
