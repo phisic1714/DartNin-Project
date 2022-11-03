@@ -8,6 +8,8 @@ import 'package:flutter_application_3/aboutUs.dart';
 import '../GameHistory/homeHistory.dart';
 import '../home.dart';
 import '../main.dart';
+import '../forAdminUser/addGame.dart';
+import '../Allgame.dart';
 
 Drawer drawer(BuildContext context) {
   return Drawer(
@@ -38,11 +40,27 @@ Drawer drawer(BuildContext context) {
           leading: Icon(Icons.gamepad),
           title: Text('ประวัติเกม'),
           onTap: () {
-            Navigator.push(
-            context,
-            MaterialPageRoute(builder: (context) => const homeHis()));
             Navigator.push(context,
                 MaterialPageRoute(builder: (context) => const homeHis()));
+            Navigator.push(context,
+                MaterialPageRoute(builder: (context) => const homeHis()));
+          },
+        ),
+        ListTile(
+          leading: Icon(Icons.exit_to_app),
+          title: Text('สำหรับผู้พัฒนา'),
+          onTap: () {
+            _signOut();
+            Navigator.push(context,
+                MaterialPageRoute(builder: (context) => const addgame()));
+          },
+        ),
+        ListTile(
+          leading: Icon(Icons.group),
+          title: Text('About Us'),
+          onTap: () {
+            Navigator.push(context,
+                MaterialPageRoute(builder: (context) => const about()));
           },
         ),
         ListTile(
@@ -58,19 +76,11 @@ Drawer drawer(BuildContext context) {
                         )));
           },
         ),
-        ListTile(
-          leading: Icon(Icons.group),
-          title: Text('About Us'),
-          onTap: () {
-            Navigator.push(context,
-                MaterialPageRoute(builder: (context) => const about()));
-          },
-        ),
       ],
     ),
   );
 }
 
-Future <void> _signOut() async {
+Future<void> _signOut() async {
   await FirebaseAuth.instance.signOut();
 }
