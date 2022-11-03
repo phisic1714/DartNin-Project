@@ -75,9 +75,6 @@ class _Allgame extends State<Allgame> {
                     ),
                     title: Text(game[index]["name"]),
                     subtitle: Text(game[index]["type"],),
-                    trailing: IconButton(icon: Icon(Icons.star_border), onPressed: (){
-                      //logic to open POPUP window
-                  }),
                     onTap: () => Navigator.push(
                         context,
                         MaterialPageRoute(

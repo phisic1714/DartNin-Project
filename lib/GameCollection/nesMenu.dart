@@ -7,6 +7,8 @@ import '../widget Always Use/drawer.dart';
 import '../home.dart';
 import '../runGame.dart';
 
+
+
 class NesMenu extends StatefulWidget {
   const NesMenu({Key? key}) : super(key: key);
 
@@ -19,83 +21,49 @@ class _NesMenu extends State<NesMenu> {
   Widget build(
     BuildContext context,
   ) {
-    return Stack(children: <Widget>[
-      backgroudImage(),
-      Scaffold(
-          appBar: AppBar(
-            title: const Text('Nintendo Entertainment System'),
-            actions: [
-              IconButton(
-                  onPressed: () => Navigator.push(
-                      context, MaterialPageRoute(builder: (context) => home())),
-                  icon: Icon(Icons.home))
-            ],
-          ),
-          backgroundColor: Colors.transparent,
-          body: StreamBuilder<QuerySnapshot>(
-            stream: FirebaseFirestore.instance
-                .collection('game')
-                .where('type', isEqualTo: 'nes')
-                .snapshots(),
-            builder: (BuildContext context,
-                AsyncSnapshot<QuerySnapshot> querySnapshot) {
-              if (querySnapshot.hasError) {
-                return Center(child: (Text("Error")));
-              } else if (querySnapshot.hasData) {
-                return ListView.builder(
-                  itemCount: querySnapshot.data?.docs.length,
-                  itemBuilder: (context, index) {
-                    final game = querySnapshot.data?.docs;
-                    return Card(
-                        child: ListTile(
-                      tileColor: Color.fromARGB(255, 27, 50, 126),
-                      textColor: Colors.white,
-                      leading: ClipRRect(
-                        borderRadius: BorderRadius.circular(360), //or 15.0
-                        child: Image(
-                            image: NetworkImage(game![index]["image"]),
-                            height: 75,
-                            width: 75),
-                      ),
-                      title: Text(game[index]["name"]),
-                      onTap: () => Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) =>
-                                  runGame(game[index]["game"]))),
-                    ));
-                  },
-                );
-              } else {
-                return Center(child: CircularProgressIndicator());
-              }
-            },
-          ))
-    ]);
-  }
-}
-
-Widget backgroudImage() {
-  return ShaderMask(
-    shaderCallback: (bounds) => LinearGradient(
-      colors: [
-        Color.fromARGB(255, 255, 255, 255),
-        Color.fromARGB(31, 255, 255, 255)
-      ],
-      begin: Alignment.bottomCenter,
-      end: Alignment.center,
-    ).createShader(bounds),
-    blendMode: BlendMode.darken,
-    child: Container(
-      decoration: BoxDecoration(
-        image: DecorationImage(
-          image: AssetImage("assets/nesbg.png"),
-
-          /// change this to your  image directory
-          fit: BoxFit.cover,
-          //colorFilter: ColorFilter.mode(Colors.black45, BlendMode.darken),
+    return Scaffold(
+        appBar: AppBar(
+          title: const Text('Nintendo Entertainment System'),
+          actions: [
+            IconButton(
+                onPressed: () => Navigator.push(
+                    context, MaterialPageRoute(builder: (context) => home())),
+                icon: Icon(Icons.home))
+          ],
         ),
-      ),
-    ),
-  );
+       body: StreamBuilder<QuerySnapshot>(
+          stream: FirebaseFirestore.instance.collection('game').where('type', isEqualTo: 'nes').snapshots(),
+          builder: (BuildContext context,
+              AsyncSnapshot<QuerySnapshot> querySnapshot) {
+            if (querySnapshot.hasError) {
+              return Center(child: (Text("Error")));
+            } else if (querySnapshot.hasData) {
+              
+              return ListView.builder(
+                itemCount: querySnapshot.data?.docs.length,
+                itemBuilder: (context, index) {
+                  final game = querySnapshot.data?.docs;
+                  return Card(child: ListTile(
+         tileColor: Colors.lightGreen, 
+         textColor: Colors.white,
+        leading: ClipRRect(
+          borderRadius: BorderRadius.circular(360), //or 15.0
+          child: 
+              Image(image: NetworkImage(game![index]["image"]), height: 75, width:75),
+        ),
+        title: Text(game[index]["name"]),
+        onTap: () => Navigator.push(context,
+            MaterialPageRoute(builder: (context) => runGame(game[index]["game"]))),
+      ));
+                },
+              );
+            } else {
+              
+              return Center(child: CircularProgressIndicator());
+            }
+          },
+        ));
+  }
+
+  
 }
