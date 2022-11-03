@@ -24,7 +24,7 @@ class _ResetPasswordState extends State<ResetPassword> {
           body: Column(
             children: [
               backgroudImage(),
-              Image.asset("assets/nin.png"),
+              Image.asset("assets/6.png"),
               Padding(
                 padding: const EdgeInsets.all(8.0),
                 child: TextField(

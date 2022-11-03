@@ -27,6 +27,7 @@ class _RegisterPageState extends State<RegisterPage> {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
+              Image.asset("assets/6.png"),
               buildEmailField(),
               buildPasswordField(),
               buildRegisterButton(),

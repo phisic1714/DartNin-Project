@@ -10,6 +10,7 @@ import '../home.dart';
 import '../main.dart';
 import '../forAdminUser/addGame.dart';
 import '../Allgame.dart';
+import '../image_upload.dart';
 
 Drawer drawer(BuildContext context) {
   return Drawer(
@@ -27,9 +28,12 @@ Drawer drawer(BuildContext context) {
           },
         ),
         ListTile(
-          leading: Icon(Icons.person),
-          title: Text('โปรไฟล์'),
-          onTap: () {},
+          leading: Icon(Icons.group),
+          title: Text('Profile'),
+          onTap: () {
+            Navigator.push(context,
+                MaterialPageRoute(builder: (context) => ImageUploads()));
+          },
         ),
         //  ListTile(
         //    leading: Icon(Icons.settings),
@@ -63,6 +67,7 @@ Drawer drawer(BuildContext context) {
                 MaterialPageRoute(builder: (context) => const about()));
           },
         ),
+
         ListTile(
           leading: Icon(Icons.exit_to_app),
           title: Text('ออกจากระบบ'),

@@ -39,14 +39,17 @@ class _LoginPageState extends State<LoginPage> {
   final _formstate = GlobalKey<FormState>();
   String? email;
   String? password;
+  dynamic user;
+  String? userEmail;
+  String? userPhoneNumber;
   final auth = FirebaseAuth.instance;
 
   @override
   Widget build(BuildContext context) {
     SystemChrome.setPreferredOrientations([
-        DeviceOrientation.portraitUp,
-        DeviceOrientation.portraitDown,
-      ]);
+      DeviceOrientation.portraitUp,
+      DeviceOrientation.portraitDown,
+    ]);
     return Stack(children: <Widget>[
       backgroudImage(),
       Scaffold(
@@ -59,7 +62,7 @@ class _LoginPageState extends State<LoginPage> {
             mainAxisAlignment: MainAxisAlignment.spaceAround,
             crossAxisAlignment: CrossAxisAlignment.center,
             children: <Widget>[
-              Image.asset("assets/nin.png"),
+              Image.asset("assets/6.png"),
               emailTextFormField(),
               passwordTextFormField(),
               loginButton(),
@@ -247,5 +250,12 @@ class _LoginPageState extends State<LoginPage> {
             onPressed: () => Navigator.of(context).push(
                   MaterialPageRoute(builder: (context) => ResetPassword()),
                 )));
+  }
+
+  void inputData() {
+    final User? user = auth.currentUser;
+    final uid = user?.uid;
+    print(uid);
+    // here you write the codes to input the data into firestore
   }
 }
