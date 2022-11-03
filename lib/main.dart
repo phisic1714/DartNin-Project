@@ -4,6 +4,7 @@ import 'package:flutter_application_3/register.dart';
 import 'package:flutter_application_3/home.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter_application_3/resetPassword.dart';
 import 'Allgame.dart';
 
 Future<void> main() async {
@@ -55,7 +56,7 @@ class _LoginPageState extends State<LoginPage> {
           autovalidateMode: AutovalidateMode.always,
           key: _formstate,
           child: Column(
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            mainAxisAlignment: MainAxisAlignment.spaceAround,
             crossAxisAlignment: CrossAxisAlignment.center,
             children: <Widget>[
               Image.asset("assets/nin.png"),
@@ -63,6 +64,7 @@ class _LoginPageState extends State<LoginPage> {
               passwordTextFormField(),
               loginButton(),
               registerButton(context),
+              forgotPassword(context)
             ],
           ),
         ),
@@ -229,5 +231,21 @@ class _LoginPageState extends State<LoginPage> {
         ),
       ),
     );
+  }
+
+  Widget forgotPassword(BuildContext context) {
+    return Container(
+        width: MediaQuery.of(context).size.width,
+        height: 35,
+        alignment: Alignment.center,
+        child: TextButton(
+            child: Text(
+              "Forgot Password",
+              style: TextStyle(color: Colors.white),
+              textAlign: TextAlign.center,
+            ),
+            onPressed: () => Navigator.of(context).push(
+                  MaterialPageRoute(builder: (context) => ResetPassword()),
+                )));
   }
 }

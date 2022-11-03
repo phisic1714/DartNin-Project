@@ -100,7 +100,7 @@ class home extends StatelessWidget {
       )
     ]);
   }
-//<<<<<<< HEAD
+
 }
 
 Widget backgroudImage() {
@@ -124,6 +124,6 @@ Widget backgroudImage() {
     ),
   );
 }
-//=======
+
 //}
-//>>>>>>> 6ab9c06b81d0bbf0e59531fee451d9268a1fa16a
+

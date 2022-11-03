@@ -89,11 +89,7 @@ flutter:
       - assets/snesbg.png
       - assets/nesbg.png
       - assets/gbcbg.png
-#//<<<<<<< HEAD
       - assets/bg.png
-      - "assets/Free_Sample_By_Wix-removebg-preview.png"
-#//=======
-#>>>>>>> 6ab9c06b81d0bbf0e59531fee451d9268a1fa16a
   #   - images/a_dot_ham.jpeg
 
   # An image asset can refer to one or more resolution-specific "variants", see

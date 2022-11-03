@@ -9,14 +9,14 @@ import '../widget Always Use/drawer.dart';
 import '../home.dart';
 import '../runGame.dart';
 
-class Allgame extends StatefulWidget {
-  const Allgame({Key? key}) : super(key: key);
+class addgame extends StatefulWidget {
+  const addgame({Key? key}) : super(key: key);
 
   @override
-  State<Allgame> createState() => _Allgame();
+  State<addgame> createState() => _addgame();
 }
 
-class _Allgame extends State<Allgame> {
+class _addgame extends State<addgame> {
   @override
   late String search = '';
   Widget build(
@@ -35,8 +35,7 @@ class _Allgame extends State<Allgame> {
           ],
         ),
         body: StreamBuilder<QuerySnapshot>(
-          stream: search != '' ? FirebaseFirestore.instance.collection('game').where('name', isGreaterThanOrEqualTo: search)
- .where('name', isLessThan: search +'z').snapshots():FirebaseFirestore.instance.collection('game').orderBy('name').snapshots(),
+          stream: FirebaseFirestore.instance.collection('user').doc('PkW9mb2QxKRCiQ1hpc1ewI0Zg853').collection('game').snapshots(),
           builder: (BuildContext context,
               AsyncSnapshot<QuerySnapshot> querySnapshot) {
             if (querySnapshot.hasError) {
@@ -47,7 +46,34 @@ class _Allgame extends State<Allgame> {
           padding: const EdgeInsets.all(8.0),
           child: TextField(
             decoration: InputDecoration(
-              hintText: "Search Game...",
+              labelText: 'Game Name',
+              hintText: "Name...",
+              hintStyle: TextStyle(color: Colors.black)),
+            style: TextStyle(color: Colors.black),
+            onChanged: (value) {
+              // Update the key when the value changes.
+              setState(() => search = value);
+            },
+          ),
+        ),Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: TextField(
+            decoration: InputDecoration(
+              labelText: 'Game URL',
+              hintText: "URL...",
+              hintStyle: TextStyle(color: Colors.black)),
+            style: TextStyle(color: Colors.black),
+            onChanged: (value) {
+              // Update the key when the value changes.
+              setState(() => search = value);
+            },
+          ),
+        ),Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: TextField( 
+            decoration: InputDecoration(
+               labelText: 'Image URL',
+              hintText: "URL...",
               hintStyle: TextStyle(color: Colors.black)),
             style: TextStyle(color: Colors.black),
             onChanged: (value) {
