@@ -90,6 +90,7 @@ flutter:
       - assets/nesbg.png
       - assets/gbcbg.png
       - assets/bg.png
+      - assets/6.png
   #   - images/a_dot_ham.jpeg
 
   # An image asset can refer to one or more resolution-specific "variants", see
