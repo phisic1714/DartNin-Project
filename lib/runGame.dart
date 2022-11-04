@@ -18,8 +18,6 @@ class _runGameState extends State<runGame> {
     SystemChrome.setPreferredOrientations([
       DeviceOrientation.landscapeRight,
       DeviceOrientation.landscapeLeft,
-      DeviceOrientation.portraitUp,
-      DeviceOrientation.portraitDown,
     ]);
     return Scaffold(
       backgroundColor: Color.fromARGB(255, 5, 5, 5),
@@ -28,7 +26,7 @@ class _runGameState extends State<runGame> {
           : AppBar(
               title: Text("Playgame"),
             ),
-      body: Stack(children: [gameDisplay(), const SingleChildScrollView()]),
+      body: Stack(children: [gameDisplay()]),
     );
   }
 
