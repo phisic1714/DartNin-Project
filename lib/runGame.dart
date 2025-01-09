@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:webview_flutter/webview_flutter.dart';
+// import 'package:webview_flutter/webview_flutter.dart';
 
 class runGame extends StatefulWidget {
   final String gamelink;
@@ -33,10 +33,12 @@ class _runGameState extends State<runGame> {
   SingleChildScrollView gameDisplay() {
     String game = widget.gamelink;
     String? height;
-    double sizes=370;
+    double sizes = 370;
     if (game.contains('vizzed')) {
       height = '"500"';
-      if(MediaQuery.of(context).orientation == Orientation.portrait){sizes=190;} 
+      if (MediaQuery.of(context).orientation == Orientation.portrait) {
+        sizes = 190;
+      }
     } else {
       height = '100%';
     }
@@ -45,18 +47,18 @@ class _runGameState extends State<runGame> {
       child: Container(
         constraints: BoxConstraints(
             maxHeight: sizes, maxWidth: double.infinity), //360double.infinity
-        child: WebView(
-          zoomEnabled: false,
-          initialUrl: Uri.dataFromString('''<iframe src="$game" 
-              width=100% 
-              height= $height
-              frameborder="no" 
-              allowfullscreen="true" 
-              webkitallowfullscreen="true" 
-              mozallowfullscreen="true" 
-              scrolling="no"></iframe>''', mimeType: 'text/html').toString(),
-          javascriptMode: JavascriptMode.unrestricted,
-        ),
+        // child: WebView(
+        //   zoomEnabled: false,
+        //   initialUrl: Uri.dataFromString('''<iframe src="$game"
+        //       width=100%
+        //       height= $height
+        //       frameborder="no"
+        //       allowfullscreen="true"
+        //       webkitallowfullscreen="true"
+        //       mozallowfullscreen="true"
+        //       scrolling="no"></iframe>''', mimeType: 'text/html').toString(),
+        //   javascriptMode: JavascriptMode.unrestricted,
+        // ),
       ),
     );
   }
